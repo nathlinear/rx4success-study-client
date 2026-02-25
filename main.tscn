@@ -68,7 +68,8 @@ text = "Status"
 layout_mode = 2
 text = "Get Quiz Answers"
 
-[node name="QuizAnswers" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer" unique_id=300843046]
+[node name="QuizAnswers" type="RichTextLabel" parent="CanvasLayer/Control/CenterContainer/VBoxContainer" unique_id=1422265656]
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 
 [node name="ButtonController" type="Node" parent="CanvasLayer/Control" unique_id=1917284214 node_paths=PackedStringArray("button1", "email_field", "pass_field", "status", "get_quiz_data_button", "quiz_data_label")]

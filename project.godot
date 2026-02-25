@@ -23,6 +23,10 @@ config/icon="res://icon.svg"
 
 Supabase="*uid://dxa1kn7re5iqf"
 
+[display]
+
+window/vsync/vsync_mode=0
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/supabase/plugin.cfg")

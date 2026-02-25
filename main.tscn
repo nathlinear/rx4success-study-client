@@ -51,6 +51,7 @@ text = "Enter Email:"
 [node name="LineEdit" type="LineEdit" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/GridContainer" unique_id=2102278615]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+clear_button_enabled = true
 
 [node name="Label2" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/GridContainer" unique_id=1648036931]
 layout_mode = 2
@@ -59,6 +60,8 @@ text = "Enter Password:"
 [node name="LineEdit2" type="LineEdit" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/GridContainer" unique_id=1243791065]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+clear_button_enabled = true
+secret = true
 
 [node name="Button" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer" unique_id=1454788883]
 layout_mode = 2

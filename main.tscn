@@ -16,13 +16,6 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ButtonController" type="Node" parent="CanvasLayer/Control" unique_id=1917284214 node_paths=PackedStringArray("button1", "email_field", "pass_field", "status")]
-script = ExtResource("1_ig7tw")
-button1 = NodePath("../CenterContainer/VBoxContainer/Button")
-email_field = NodePath("../CenterContainer/VBoxContainer/GridContainer/LineEdit")
-pass_field = NodePath("../CenterContainer/VBoxContainer/GridContainer/LineEdit2")
-status = NodePath("../CenterContainer/VBoxContainer/Label3")
-
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control" unique_id=982030646]
 layout_mode = 1
 anchors_preset = 8
@@ -31,9 +24,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -164.5
-offset_top = -50.5
+offset_top = -95.0
 offset_right = 164.5
-offset_bottom = 50.5
+offset_bottom = 95.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -48,7 +41,7 @@ columns = 2
 layout_mode = 2
 text = "Enter Email:"
 
-[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/GridContainer" unique_id=2102278615]
+[node name="EmailField" type="LineEdit" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/GridContainer" unique_id=2102278615]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 clear_button_enabled = true
@@ -57,16 +50,32 @@ clear_button_enabled = true
 layout_mode = 2
 text = "Enter Password:"
 
-[node name="LineEdit2" type="LineEdit" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/GridContainer" unique_id=1243791065]
+[node name="PassField" type="LineEdit" parent="CanvasLayer/Control/CenterContainer/VBoxContainer/GridContainer" unique_id=1243791065]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 clear_button_enabled = true
 secret = true
 
-[node name="Button" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer" unique_id=1454788883]
+[node name="LoginButton" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer" unique_id=1454788883]
 layout_mode = 2
 text = "Login"
 
-[node name="Label3" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer" unique_id=1978208361]
+[node name="StatusLabel" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer" unique_id=1978208361]
 layout_mode = 2
 text = "Status"
+
+[node name="GetQuizAnswers" type="Button" parent="CanvasLayer/Control/CenterContainer/VBoxContainer" unique_id=737340883]
+layout_mode = 2
+text = "Get Quiz Answers"
+
+[node name="QuizAnswers" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer" unique_id=300843046]
+layout_mode = 2
+
+[node name="ButtonController" type="Node" parent="CanvasLayer/Control" unique_id=1917284214 node_paths=PackedStringArray("button1", "email_field", "pass_field", "status", "get_quiz_data_button", "quiz_data_label")]
+script = ExtResource("1_ig7tw")
+button1 = NodePath("../CenterContainer/VBoxContainer/LoginButton")
+email_field = NodePath("../CenterContainer/VBoxContainer/GridContainer/EmailField")
+pass_field = NodePath("../CenterContainer/VBoxContainer/GridContainer/PassField")
+status = NodePath("../CenterContainer/VBoxContainer/StatusLabel")
+get_quiz_data_button = NodePath("../CenterContainer/VBoxContainer/GetQuizAnswers")
+quiz_data_label = NodePath("../CenterContainer/VBoxContainer/QuizAnswers")

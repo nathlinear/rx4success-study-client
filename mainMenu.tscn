@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://bkpcfp4p5q6tu"]
+
+[ext_resource type="Script" uid="uid://o8cbo2lwdqs3" path="res://main_menu.gd" id="1_wut1r"]
+
+[node name="MainMenu" type="Node2D" unique_id=151751797 node_paths=PackedStringArray("quiz_button", "stats_button")]
+script = ExtResource("1_wut1r")
+quiz_button = NodePath("CanvasLayer/Control/VBoxContainer/QuizButton")
+stats_button = NodePath("CanvasLayer/Control/MarginContainer/Button")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=94556767]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=254725805]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control" unique_id=134423613]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/MarginContainer" unique_id=884080852]
+layout_mode = 2
+text = "Stats"
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control" unique_id=1220187363]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -114.0
+offset_bottom = 51.0
+grow_horizontal = 0
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/MarginContainer2" unique_id=1772817271]
+layout_mode = 2
+text = "Log out"
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/Control" unique_id=128464461]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -10.0
+offset_right = 10.0
+offset_bottom = 20.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer3" unique_id=1137981170]
+layout_mode = 2
+text = "Logged in as: {username}"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control" unique_id=669378021]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/VBoxContainer" unique_id=2003087736]
+layout_mode = 2
+text = "Flashcards"
+
+[node name="QuizButton" type="Button" parent="CanvasLayer/Control/VBoxContainer" unique_id=1615706292]
+layout_mode = 2
+text = "Quiz mode"

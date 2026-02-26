@@ -2,8 +2,16 @@
 
 [ext_resource type="Script" uid="uid://khi6moika1h2" path="res://quiz.gd" id="1_kninm"]
 
-[node name="Quiz" type="Node2D" unique_id=1623613907]
+[node name="Quiz" type="Node2D" unique_id=1623613907 node_paths=PackedStringArray("quit_button", "next_button", "question_label", "result_label", "button1", "button2", "button3", "button4")]
 script = ExtResource("1_kninm")
+quit_button = NodePath("CanvasLayer/Control/MarginContainer/Quit")
+next_button = NodePath("CanvasLayer/Control/MarginContainer3/NextButton")
+question_label = NodePath("CanvasLayer/Control/QuestionLabel")
+result_label = NodePath("CanvasLayer/Control/MarginContainer2/VBoxContainer/Result")
+button1 = NodePath("CanvasLayer/Control/MarginContainer2/VBoxContainer/Button1")
+button2 = NodePath("CanvasLayer/Control/MarginContainer2/VBoxContainer/Button2")
+button3 = NodePath("CanvasLayer/Control/MarginContainer2/VBoxContainer/Button3")
+button4 = NodePath("CanvasLayer/Control/MarginContainer2/VBoxContainer/Button4")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=608881412]
 follow_viewport_enabled = true
@@ -46,7 +54,14 @@ grow_vertical = 0
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="CanvasLayer/Control/MarginContainer2/VBoxContainer" unique_id=220516776]
+[node name="Result" type="Label" parent="CanvasLayer/Control/MarginContainer2/VBoxContainer" unique_id=873773490]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Result"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Button1" type="Button" parent="CanvasLayer/Control/MarginContainer2/VBoxContainer" unique_id=220516776]
 layout_mode = 2
 text = "Option 1"
 autowrap_mode = 3
@@ -73,6 +88,29 @@ anchor_left = 0.5
 anchor_top = 0.3
 anchor_right = 0.5
 anchor_bottom = 0.3
+offset_left = -242.0
+offset_top = -11.5
+offset_right = 242.0
+offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 32
 text = "QuestionLabel"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/Control" unique_id=1355567688]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -65.0
+offset_top = -51.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="NextButton" type="Button" parent="CanvasLayer/Control/MarginContainer3" unique_id=740843193]
+layout_mode = 2
+text = "Next"

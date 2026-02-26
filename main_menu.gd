@@ -18,8 +18,9 @@ func _go_to_quiz():
 func _get_question():
 	Supabase.database.Rpc("get_question")
 
-func _response(msg):
+func _response(msg: Dictionary):
 	print(msg)
+	print(msg.get("name"))
 
 func _error(e):
 	print(e)

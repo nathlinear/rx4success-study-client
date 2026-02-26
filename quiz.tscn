@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dmwekxfamq5yr"]
 
 [ext_resource type="Script" uid="uid://khi6moika1h2" path="res://quiz.gd" id="1_kninm"]
+[ext_resource type="Script" uid="uid://8r1stq8oxlu1" path="res://user_label.gd" id="2_k7kv1"]
 
 [node name="Quiz" type="Node2D" unique_id=1623613907 node_paths=PackedStringArray("quit_button", "next_button", "question_label", "result_label", "button1", "button2", "button3", "button4")]
 script = ExtResource("1_kninm")
@@ -114,3 +115,13 @@ grow_vertical = 0
 [node name="NextButton" type="Button" parent="CanvasLayer/Control/MarginContainer3" unique_id=740843193]
 layout_mode = 2
 text = "Next"
+
+[node name="MarginContainer4" type="MarginContainer" parent="CanvasLayer/Control" unique_id=1779317664]
+layout_mode = 0
+offset_right = 20.0
+offset_bottom = 20.0
+
+[node name="UserLabel" type="Label" parent="CanvasLayer/Control/MarginContainer4" unique_id=1675433694]
+layout_mode = 2
+text = "user"
+script = ExtResource("2_k7kv1")

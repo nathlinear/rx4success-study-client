@@ -31,6 +31,7 @@ func _ready() -> void:
 		button.disabled = true
 	
 	Supabase.database.rpc_completed.connect(_response)
+	Supabase.database.error.connect(_error)
 	
 func _change_scene() -> void:
 	get_tree().change_scene_to_file("res://mainMenu.tscn")
@@ -38,21 +39,20 @@ func _change_scene() -> void:
 func _gen_question() -> void:
 	Supabase.database.Rpc("get_question")
 
-func _response(msg: Dictionary):
+func _response(msg: String):
 	# msg is a dictionary with keys name, correct, wrong1, wrong2, and wrong3
+	var arr = msg.split("||")
 	
-	var q = "Which of the following is a common indication for %s?" % msg.get("name")
+	var q = "Which of the following is a common indication for %s?" % arr[0]
 	question_label.text = q
 	
 	# save correct answer for later checking
-	correct = msg.get("correct")
+	correct = arr[1]
 	
 	# make an array of all the choices, randomize it, then assign each buttonn
 	var choices: Array[String] = []
-	choices.append(msg.get("correct"))
-	choices.append(msg.get("wrong1"))
-	choices.append(msg.get("wrong2"))
-	choices.append(msg.get("wrong3"))
+	for i in range(4):
+		choices.append(arr[i])
 	
 	choices.shuffle()
 	
@@ -77,3 +77,6 @@ func choice_made(chosen: Button):
 	# disable all buttons until next question
 	for button in buttons:
 		button.disabled = true
+
+func _error(err):
+	result_label.text = str(err)

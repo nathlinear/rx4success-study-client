@@ -32,6 +32,7 @@ func match_code(code : int) -> int:
 
 func push_request(httprequest : HTTPRequest) -> void:
 	reference()
+	httprequest.accept_gzip = false
 	httprequest.request_completed.connect(_on_task_completed.bind(httprequest))
 	httprequest.request(_endpoint, _headers, _method, _payload)
 

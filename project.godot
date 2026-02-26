@@ -17,11 +17,18 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="supatest"
 run/main_scene="uid://dlv1kcjdcp3a1"
 config/features=PackedStringArray("4.6", "GL Compatibility")
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [autoload]
 
 Supabase="*uid://dxa1kn7re5iqf"
+Global="*uid://dswivbddy3kwv"
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [editor_plugins]
 

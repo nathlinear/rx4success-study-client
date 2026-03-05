@@ -3,11 +3,13 @@ extends Node2D
 
 @export var quiz_button: Button
 @export var stats_button: Button
+@export var logout_button: Button
 
 func _ready() -> void:
 	print(Supabase.auth.client)
 	quiz_button.pressed.connect(_go_to_quiz)
 	stats_button.pressed.connect(_get_question)
+	logout_button.pressed.connect(_logout)
 	
 	Supabase.database.rpc_completed.connect(_response)
 	Supabase.database.error.connect(_error)
@@ -17,6 +19,10 @@ func _go_to_quiz():
 
 func _get_question():
 	Supabase.database.Rpc("get_question")
+
+func _logout():
+	Supabase.auth.sign_out()
+	get_tree().change_scene_to_file("res://login.tscn")
 
 func _response(msg: Dictionary):
 	print(msg)

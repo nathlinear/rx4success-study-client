@@ -27,11 +27,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control" unique_id=2043899213]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = 850.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_i0i4q")
@@ -109,10 +109,11 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -200.0
+offset_left = -313.0
 offset_bottom = 200.0
 grow_horizontal = 0
 
 [node name="Quit" type="Button" parent="CanvasLayer/Control/MarginContainer2" unique_id=1251965536]
 layout_mode = 2
+size_flags_vertical = 4
 text = "Quit to Menu"

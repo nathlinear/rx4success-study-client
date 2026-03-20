@@ -27,8 +27,9 @@ Global="*uid://dswivbddy3kwv"
 
 [display]
 
-window/stretch/mode="viewport"
-window/stretch/aspect="expand"
+window/size/viewport_width=648
+window/size/viewport_height=1152
+window/handheld/orientation=1
 
 [editor_plugins]
 

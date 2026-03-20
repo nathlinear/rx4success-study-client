@@ -19,12 +19,12 @@ size_flags_vertical = 3
 
 [node name="ButtonController" type="Node" parent="CanvasLayer/Control" unique_id=1917284214 node_paths=PackedStringArray("button1", "email_field", "pass_field", "status", "get_quiz_data_button", "quiz_data_label")]
 script = ExtResource("1_cau7c")
-button1 = NodePath("../VBoxContainer/LoginButton")
-email_field = NodePath("../VBoxContainer/GridContainer/EmailField")
-pass_field = NodePath("../VBoxContainer/GridContainer/PassField")
-status = NodePath("../VBoxContainer/StatusLabel")
-get_quiz_data_button = NodePath("../VBoxContainer/GetQuizAnswers")
-quiz_data_label = NodePath("../VBoxContainer/QuizAnswers")
+button1 = NodePath("../MarginContainer/VBoxContainer2/VBoxContainer2/LoginButton")
+email_field = NodePath("../MarginContainer/VBoxContainer2/VBoxContainer/EmailField")
+pass_field = NodePath("../MarginContainer/VBoxContainer2/VBoxContainer/PassField")
+status = NodePath("../MarginContainer/VBoxContainer2/VBoxContainer2/StatusLabel")
+get_quiz_data_button = NodePath("../MarginContainer/VBoxContainer2/VBoxContainer2/GetQuizAnswers")
+quiz_data_label = NodePath("../MarginContainer/VBoxContainer2/VBoxContainer2/QuizAnswers")
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="CanvasLayer/Control" unique_id=1052773000]
 layout_mode = 1
@@ -42,62 +42,63 @@ modulate = Color(1, 1, 1, 0.57254905)
 layout_mode = 2
 texture = ExtResource("2_3n56f")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control" unique_id=499152086]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control" unique_id=1678388932]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 14
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -164.5
-offset_top = -183.5
-offset_right = 164.5
-offset_bottom = 183.5
+offset_top = -165.0
+offset_bottom = 165.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control/VBoxContainer" unique_id=165805821]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer" unique_id=1257883734]
 layout_mode = 2
-columns = 2
+theme_override_constants/separation = 100
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/GridContainer" unique_id=448630856]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2" unique_id=499152086]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=448630856]
+layout_mode = 2
 text = "Enter Email:"
 
-[node name="EmailField" type="LineEdit" parent="CanvasLayer/Control/VBoxContainer/GridContainer" unique_id=2102278615]
+[node name="EmailField" type="LineEdit" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=2102278615]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 clear_button_enabled = true
 virtual_keyboard_type = 5
 
-[node name="Label2" type="Label" parent="CanvasLayer/Control/VBoxContainer/GridContainer" unique_id=1648036931]
+[node name="Label2" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1648036931]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
 text = "Enter Password:"
 
-[node name="PassField" type="LineEdit" parent="CanvasLayer/Control/VBoxContainer/GridContainer" unique_id=1243791065]
+[node name="PassField" type="LineEdit" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1243791065]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 clear_button_enabled = true
 virtual_keyboard_type = 6
 secret = true
 
-[node name="LoginButton" type="Button" parent="CanvasLayer/Control/VBoxContainer" unique_id=1454788883]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2" unique_id=227068026]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+
+[node name="LoginButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer2" unique_id=1454788883]
+layout_mode = 2
 text = "Login"
 
-[node name="StatusLabel" type="Label" parent="CanvasLayer/Control/VBoxContainer" unique_id=1978208361]
+[node name="StatusLabel" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer2" unique_id=1978208361]
 visible = false
 layout_mode = 2
 text = "Status"
 
-[node name="GetQuizAnswers" type="Button" parent="CanvasLayer/Control/VBoxContainer" unique_id=737340883]
+[node name="GetQuizAnswers" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer2" unique_id=737340883]
 visible = false
 layout_mode = 2
 text = "Get Quiz Answers"
 
-[node name="QuizAnswers" type="RichTextLabel" parent="CanvasLayer/Control/VBoxContainer" unique_id=1422265656]
+[node name="QuizAnswers" type="RichTextLabel" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer2" unique_id=1422265656]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2

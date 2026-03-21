@@ -14,3 +14,9 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
+addons/godot-vim/plugin.cfg
+addons/godot-vim/LICENSE.md
+addons/godot-vim/icon.svg.import
+addons/godot-vim/icon.svg
+addons/godot-vim/godot-vim.gd.uid
+addons/godot-vim/godot-vim.gd

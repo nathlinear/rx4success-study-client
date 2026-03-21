@@ -1,9 +1,14 @@
 [gd_scene format=3 uid="uid://dlv1kcjdcp3a1"]
 
-[ext_resource type="Script" uid="uid://dvxyvc5onpmc" path="res://button_controller.gd" id="1_cau7c"]
+[ext_resource type="Script" uid="uid://d55js8ke0fsl" path="res://login.gd" id="1_xlo4h"]
 [ext_resource type="Texture2D" uid="uid://cui64y8cacjun" path="res://Pharm-Background.jpg" id="2_3n56f"]
 
-[node name="Login" type="Node2D" unique_id=151751797]
+[node name="Login" type="Node2D" unique_id=151751797 node_paths=PackedStringArray("email_field", "pass_field", "login_button", "info")]
+script = ExtResource("1_xlo4h")
+email_field = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/EmailField")
+pass_field = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/PassField")
+login_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/LoginButton")
+info = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/Info")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=94556767]
 
@@ -17,16 +22,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ButtonController" type="Node" parent="CanvasLayer/Control" unique_id=1917284214 node_paths=PackedStringArray("button1", "email_field", "pass_field", "status", "get_quiz_data_button", "quiz_data_label")]
-script = ExtResource("1_cau7c")
-button1 = NodePath("../MarginContainer/VBoxContainer2/VBoxContainer2/LoginButton")
-email_field = NodePath("../MarginContainer/VBoxContainer2/VBoxContainer/EmailField")
-pass_field = NodePath("../MarginContainer/VBoxContainer2/VBoxContainer/PassField")
-status = NodePath("../MarginContainer/VBoxContainer2/VBoxContainer2/StatusLabel")
-get_quiz_data_button = NodePath("../MarginContainer/VBoxContainer2/VBoxContainer2/GetQuizAnswers")
-quiz_data_label = NodePath("../MarginContainer/VBoxContainer2/VBoxContainer2/QuizAnswers")
-
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="CanvasLayer/Control" unique_id=1052773000]
+[node name="Background" type="AspectRatioContainer" parent="CanvasLayer/Control" unique_id=1052773000]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,7 +33,7 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch_mode = 3
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/AspectRatioContainer" unique_id=1079538443]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/Background" unique_id=1079538443]
 modulate = Color(1, 1, 1, 0.57254905)
 layout_mode = 2
 texture = ExtResource("2_3n56f")
@@ -53,52 +49,39 @@ offset_bottom = 165.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer" unique_id=1257883734]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer" unique_id=1257883734]
 layout_mode = 2
-theme_override_constants/separation = 100
+theme_override_constants/separation = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2" unique_id=499152086]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=448630856]
+[node name="EnterEmailLabel" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=448630856]
 layout_mode = 2
 text = "Enter Email:"
 
-[node name="EmailField" type="LineEdit" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=2102278615]
+[node name="EmailField" type="LineEdit" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=2102278615]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 clear_button_enabled = true
 virtual_keyboard_type = 5
 
-[node name="Label2" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1648036931]
+[node name="EnterPassLabel" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1648036931]
 layout_mode = 2
 text = "Enter Password:"
 
-[node name="PassField" type="LineEdit" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1243791065]
+[node name="PassField" type="LineEdit" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1243791065]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 clear_button_enabled = true
 virtual_keyboard_type = 6
 secret = true
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2" unique_id=227068026]
+[node name="Spacer" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1785050956]
 layout_mode = 2
 
-[node name="LoginButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer2" unique_id=1454788883]
+[node name="LoginButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1454788883]
 layout_mode = 2
 text = "Login"
 
-[node name="StatusLabel" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer2" unique_id=1978208361]
-visible = false
-layout_mode = 2
-text = "Status"
-
-[node name="GetQuizAnswers" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer2" unique_id=737340883]
-visible = false
-layout_mode = 2
-text = "Get Quiz Answers"
-
-[node name="QuizAnswers" type="RichTextLabel" parent="CanvasLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer2" unique_id=1422265656]
+[node name="Info" type="RichTextLabel" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1422265656]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2

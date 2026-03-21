@@ -29,12 +29,14 @@ func _on_signed_in(user : SupabaseUser):
 	print("Successfully signed as ", user)
 	if has_username():
 		_load_menu()
+		return
 	
 	# is true when user confirms new username creation
 	var success = make_username() 
 	
 	if success:
 		_load_menu()
+		return
 	else:
 		# user did not want to create username or errored
 		# sign out and return to initial page

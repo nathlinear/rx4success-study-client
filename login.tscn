@@ -3,14 +3,17 @@
 [ext_resource type="Script" uid="uid://d55js8ke0fsl" path="res://login.gd" id="1_xlo4h"]
 [ext_resource type="Texture2D" uid="uid://cui64y8cacjun" path="res://Pharm-Background.jpg" id="2_3n56f"]
 
-[node name="Login" type="Node2D" unique_id=151751797 node_paths=PackedStringArray("email_field", "pass_field", "login_button", "info", "passwordVBox", "usernameVBox")]
+[node name="Login" type="Node2D" unique_id=151751797 node_paths=PackedStringArray("email_field", "pass_field", "login_button", "info", "register_button", "passwordVBox", "usernameVBox", "createUsernameButton", "createUsernameField")]
 script = ExtResource("1_xlo4h")
-email_field = NodePath("CanvasLayer/Control/MarginContainer/BackgroundPanel/MarginContainer/PasswordVBox/EmailField")
-pass_field = NodePath("CanvasLayer/Control/MarginContainer/BackgroundPanel/MarginContainer/PasswordVBox/PassField")
-login_button = NodePath("CanvasLayer/Control/MarginContainer/BackgroundPanel/MarginContainer/PasswordVBox/LoginButton")
-info = NodePath("CanvasLayer/Control/MarginContainer/BackgroundPanel/MarginContainer/PasswordVBox/Info")
-passwordVBox = NodePath("CanvasLayer/Control/MarginContainer/BackgroundPanel/MarginContainer/PasswordVBox")
-usernameVBox = NodePath("CanvasLayer/Control/MarginContainer/BackgroundPanel/MarginContainer/UsernameVBox")
+email_field = NodePath("CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/PasswordVBox/EmailField")
+pass_field = NodePath("CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/PasswordVBox/PassField")
+login_button = NodePath("CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/PasswordVBox/LoginButton")
+info = NodePath("CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/Info")
+register_button = NodePath("CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/PasswordVBox/RegisterButton")
+passwordVBox = NodePath("CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/PasswordVBox")
+usernameVBox = NodePath("CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/UsernameVBox")
+createUsernameButton = NodePath("CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/UsernameVBox/Button")
+createUsernameField = NodePath("CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/UsernameVBox/LineEdit")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=94556767]
 
@@ -51,66 +54,75 @@ offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BackgroundPanel" type="PanelContainer" parent="CanvasLayer/Control/MarginContainer" unique_id=570750441]
+[node name="Panel" type="Panel" parent="CanvasLayer/Control/MarginContainer" unique_id=998812438]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/MarginContainer/BackgroundPanel" unique_id=1220652498]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/MarginContainer" unique_id=1220652498]
 layout_mode = 2
 
-[node name="PasswordVBox" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/BackgroundPanel/MarginContainer" unique_id=1257883734]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/MarginContainer" unique_id=1266201245]
+layout_mode = 2
+
+[node name="PasswordVBox" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer" unique_id=1257883734]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="EnterEmailLabel" type="Label" parent="CanvasLayer/Control/MarginContainer/BackgroundPanel/MarginContainer/PasswordVBox" unique_id=448630856]
+[node name="EnterEmailLabel" type="Label" parent="CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/PasswordVBox" unique_id=448630856]
 layout_mode = 2
 text = "Enter Email:"
 
-[node name="EmailField" type="LineEdit" parent="CanvasLayer/Control/MarginContainer/BackgroundPanel/MarginContainer/PasswordVBox" unique_id=2102278615]
+[node name="EmailField" type="LineEdit" parent="CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/PasswordVBox" unique_id=2102278615]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 clear_button_enabled = true
 virtual_keyboard_type = 5
 
-[node name="EnterPassLabel" type="Label" parent="CanvasLayer/Control/MarginContainer/BackgroundPanel/MarginContainer/PasswordVBox" unique_id=1648036931]
+[node name="EnterPassLabel" type="Label" parent="CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/PasswordVBox" unique_id=1648036931]
 layout_mode = 2
 text = "Enter Password:"
 
-[node name="PassField" type="LineEdit" parent="CanvasLayer/Control/MarginContainer/BackgroundPanel/MarginContainer/PasswordVBox" unique_id=1243791065]
+[node name="PassField" type="LineEdit" parent="CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/PasswordVBox" unique_id=1243791065]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 clear_button_enabled = true
 virtual_keyboard_type = 6
 secret = true
 
-[node name="Spacer" type="Label" parent="CanvasLayer/Control/MarginContainer/BackgroundPanel/MarginContainer/PasswordVBox" unique_id=1785050956]
+[node name="Spacer" type="Label" parent="CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/PasswordVBox" unique_id=1785050956]
 layout_mode = 2
 
-[node name="LoginButton" type="Button" parent="CanvasLayer/Control/MarginContainer/BackgroundPanel/MarginContainer/PasswordVBox" unique_id=1454788883]
+[node name="LoginButton" type="Button" parent="CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/PasswordVBox" unique_id=1454788883]
 layout_mode = 2
 text = "Login"
 
-[node name="Info" type="RichTextLabel" parent="CanvasLayer/Control/MarginContainer/BackgroundPanel/MarginContainer/PasswordVBox" unique_id=1422265656]
+[node name="RegisterButton" type="Button" parent="CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/PasswordVBox" unique_id=1324073402]
 layout_mode = 2
-fit_content = true
+text = "Register"
 
-[node name="UsernameVBox" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/BackgroundPanel/MarginContainer" unique_id=2024051680]
+[node name="UsernameVBox" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer" unique_id=2024051680]
+visible = false
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/MarginContainer/BackgroundPanel/MarginContainer/UsernameVBox" unique_id=841679530]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/UsernameVBox" unique_id=841679530]
 layout_mode = 2
 text = "Please create a username that you are comfortable with others seeing."
 fit_content = true
 
-[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Control/MarginContainer/BackgroundPanel/MarginContainer/UsernameVBox" unique_id=1080774983]
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/UsernameVBox" unique_id=1080774983]
 layout_mode = 2
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Control/MarginContainer/BackgroundPanel/MarginContainer/UsernameVBox" unique_id=1984289877]
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/UsernameVBox" unique_id=1984289877]
 layout_mode = 2
 text = "By confirming your username, you consent to the collection and storage of your personal data on how you use this application."
 fit_content = true
 
-[node name="Button" type="Button" parent="CanvasLayer/Control/MarginContainer/BackgroundPanel/MarginContainer/UsernameVBox" unique_id=921577220]
+[node name="Button" type="Button" parent="CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer/UsernameVBox" unique_id=921577220]
 layout_mode = 2
 text = "I consent.
 Create username."
+
+[node name="Info" type="RichTextLabel" parent="CanvasLayer/Control/MarginContainer/MarginContainer/VBoxContainer" unique_id=1422265656]
+self_modulate = Color(1, 0.69803923, 0, 1)
+layout_mode = 2
+fit_content = true

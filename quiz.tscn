@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://463lvbk7ndqw" path="res://quizbg.jpg" id="2_i0i4q"]
 [ext_resource type="Script" uid="uid://8r1stq8oxlu1" path="res://user_label.gd" id="2_k7kv1"]
 
-[node name="Quiz" type="Node2D" unique_id=1623613907 node_paths=PackedStringArray("quit_button", "next_button", "question_label", "result_label", "button1", "button2", "button3", "button4")]
+[node name="Quiz" type="Node2D" unique_id=1623613907 node_paths=PackedStringArray("quit_button", "next_button", "question_label", "result_label", "button1", "button2", "button3", "button4", "time_label")]
 script = ExtResource("1_kninm")
 quit_button = NodePath("CanvasLayer/Control/MarginContainer2/Quit")
 next_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer3/VBoxContainer2/NextButton")
@@ -14,6 +14,7 @@ button1 = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer3/VBoxConta
 button2 = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer3/VBoxContainer/Button2")
 button3 = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer3/VBoxContainer/Button3")
 button4 = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer3/VBoxContainer/Button4")
+time_label = NodePath("CanvasLayer/Control/MarginContainer3/Time")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=608881412]
 follow_viewport_enabled = true
@@ -103,6 +104,15 @@ visible = false
 layout_mode = 2
 text = "user"
 script = ExtResource("2_k7kv1")
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/Control" unique_id=7102845]
+visible = false
+layout_mode = 1
+offset_right = 363.0
+offset_bottom = 253.0
+
+[node name="Time" type="Label" parent="CanvasLayer/Control/MarginContainer3" unique_id=839824834]
+layout_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control" unique_id=520336300]
 layout_mode = 1

@@ -12,9 +12,13 @@ extends Node2D
 @export var button3: Button
 @export var button4: Button
 
+@export var time_label: Label
+
 var buttons: Array[Button] = []
 
 var correct = ""
+var saved_choices: Array[String] = []
+var time_taken: float = 0.0
 
 func _ready() -> void:
 	quit_button.pressed.connect(_change_scene)
@@ -33,6 +37,12 @@ func _ready() -> void:
 	Supabase.database.rpc_completed.connect(_response)
 	Supabase.database.error.connect(_error)
 	
+	_gen_question()
+
+func _process(delta: float) -> void:
+	time_taken += delta
+	time_label.text = str(time_taken)
+
 func _change_scene() -> void:
 	get_tree().change_scene_to_file("res://mainMenu.tscn")
 
@@ -55,6 +65,7 @@ func _response(msg: String):
 		choices.append(arr[i])
 	
 	choices.shuffle()
+	saved_choices = choices.duplicate()
 	
 	for i in range(len(buttons)):
 		buttons[i].text = choices[i]
@@ -64,6 +75,7 @@ func _response(msg: String):
 		button.disabled = false
 	
 	result_label.text = ""
+	time_taken = 0.0
 
 func choice_made(chosen: Button):
 	
@@ -77,6 +89,29 @@ func choice_made(chosen: Button):
 	# disable all buttons until next question
 	for button in buttons:
 		button.disabled = true
+	
+	insert_answer(chosen.text, correct, saved_choices, 0.1)
+
+
+func insert_answer(chosen: String, correct: String, choices: Array[String], time: float) -> void:
+	var query = (
+		SupabaseQuery.new()
+		.from("quiz_answers")
+		.insert(
+			[{
+				"chosen_answer": chosen,
+				"was_correct": chosen == correct,
+				"question_choices": choices,
+				"correct_answer": correct,
+				"time_taken": time_taken
+			}]
+		)
+	)
+	var task: DatabaseTask = Supabase.database.query(query)
+	await task.completed
+	print(task.data)
+	print(task.error)
+
 
 func _error(err):
 	result_label.text = str(err)

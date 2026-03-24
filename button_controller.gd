@@ -8,6 +8,8 @@ extends Node
 @export var quiz_data_label: RichTextLabel
 
 func _ready() -> void:
+	print("LOGIN SCENE READY: client = ", Supabase.auth.client)
+
 	status.text = ""
 	email_field.text = ""
 	pass_field.text = ""
@@ -27,19 +29,20 @@ func _ready() -> void:
 	if not Supabase.database.rpc_completed.is_connected(result):
 		Supabase.database.rpc_completed.connect(result)
 
-func sign_in():
+func sign_in() -> void:
+	print("SIGN IN ATTEMPT: client = ", Supabase.auth.client)
 	status.text = "Signing in..."
 	Supabase.auth.sign_in(email_field.text.strip_edges(), pass_field.text)
 
-func _on_signed_in(user : SupabaseUser):
+func _on_signed_in(user: SupabaseUser) -> void:
 	print("Successfully signed as ", user)
 	status.text = str(user)
 	get_tree().change_scene_to_file("res://mainMenu.tscn")
 
-func _error(e: SupabaseAuthError):
+func _error(e: SupabaseAuthError) -> void:
 	_update_status(e.message)
 
-func _update_status(msg):
+func _update_status(msg) -> void:
 	print(str(msg))
 	status.text = str(msg)
 
@@ -47,7 +50,7 @@ func get_data() -> void:
 	if Supabase.auth.client == null:
 		_update_status("Not logged in")
 		return
-
+	
 	Supabase.database.Rpc("get_my_quiz_answers")
 
 func result(query_result) -> void:

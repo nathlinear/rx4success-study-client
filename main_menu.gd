@@ -40,7 +40,11 @@ func _logout() -> void:
 	print("LOGOUT: after sign out, client = ", Supabase.auth.client)
 
 	await get_tree().process_frame
-	get_tree().change_scene_to_file("res://login.tscn")
+
+	if OS.has_feature("web"):
+		JavaScriptBridge.eval("window.location.reload();")
+	else:
+		get_tree().change_scene_to_file("res://login.tscn")
 
 func _response(msg: Dictionary) -> void:
 	print(msg)

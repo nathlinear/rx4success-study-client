@@ -51,14 +51,15 @@ grow_vertical = 2
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer" unique_id=1813252327]
 layout_mode = 2
-theme_override_constants/separation = 100
+theme_override_constants/separation = 35
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer3" unique_id=718788134]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+theme_override_constants/separation = 20
 
 [node name="QuestionLabel" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=1406356468]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "QuestionLabel"
@@ -66,27 +67,36 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="Button1" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=220516776]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "Option 1"
 autowrap_mode = 3
 
 [node name="Button2" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=354205154]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "Option 2"
 autowrap_mode = 3
 
 [node name="Button3" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=1447463639]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "Option 3"
 autowrap_mode = 3
 
 [node name="Button4" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=1443502187]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "Option 4"
 autowrap_mode = 3
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer3" unique_id=1062926888]
 layout_mode = 2
+theme_override_constants/separation = 20
 
 [node name="Result" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer3/VBoxContainer2" unique_id=873773490]
 custom_minimum_size = Vector2(100, 0)
@@ -96,6 +106,7 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="NextButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer3/VBoxContainer2" unique_id=740843193]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 text = "Next"
 

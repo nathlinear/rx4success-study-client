@@ -22,8 +22,12 @@ func _get_question():
 	Supabase.database.Rpc("get_question")
 
 func _logout():
+	logout_button.disabled = true
+
 	var task: AuthTask = Supabase.auth.sign_out()
 	await task.completed
+
+	await get_tree().process_frame
 	get_tree().change_scene_to_file("res://login.tscn")
 
 func _response(msg: Dictionary):

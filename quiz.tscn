@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dmwekxfamq5yr"]
 
 [ext_resource type="Script" uid="uid://khi6moika1h2" path="res://quiz.gd" id="1_kninm"]
-[ext_resource type="Texture2D" uid="uid://463lvbk7ndqw" path="res://quizbg.jpg" id="2_i0i4q"]
+[ext_resource type="Texture2D" uid="uid://dstdxxsgw2nm1" path="res://Untitled design.jpg" id="2_i0i4q"]
 [ext_resource type="Script" uid="uid://8r1stq8oxlu1" path="res://user_label.gd" id="2_k7kv1"]
 
 [node name="Quiz" type="Node2D" unique_id=1623613907 node_paths=PackedStringArray("quit_button", "next_button", "question_label", "result_label", "button1", "button2", "button3", "button4", "time_label")]

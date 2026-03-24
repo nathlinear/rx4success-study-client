@@ -8,17 +8,28 @@ extends Node
 @export var quiz_data_label: RichTextLabel
 
 func _ready() -> void:
-	# connect buttons
-	button1.pressed.connect(sign_in)
-	get_quiz_data_button.pressed.connect(get_data)
-	
-	# connect signals
-	Supabase.auth.signed_in.connect(_on_signed_in)
-	Supabase.auth.error.connect(_error)
-	Supabase.database.rpc_completed.connect(result)
+	status.text = ""
+	email_field.text = ""
+	pass_field.text = ""
+
+	if not button1.pressed.is_connected(sign_in):
+		button1.pressed.connect(sign_in)
+
+	if not get_quiz_data_button.pressed.is_connected(get_data):
+		get_quiz_data_button.pressed.connect(get_data)
+
+	if not Supabase.auth.signed_in.is_connected(_on_signed_in):
+		Supabase.auth.signed_in.connect(_on_signed_in)
+
+	if not Supabase.auth.error.is_connected(_error):
+		Supabase.auth.error.connect(_error)
+
+	if not Supabase.database.rpc_completed.is_connected(result):
+		Supabase.database.rpc_completed.connect(result)
 
 func sign_in():
-	Supabase.auth.sign_in(email_field.text, pass_field.text)
+	status.text = "Signing in..."
+	Supabase.auth.sign_in(email_field.text.strip_edges(), pass_field.text)
 
 func _on_signed_in(user : SupabaseUser):
 	print("Successfully signed as ", user)
@@ -36,7 +47,7 @@ func get_data() -> void:
 	if Supabase.auth.client == null:
 		_update_status("Not logged in")
 		return
-	
+
 	Supabase.database.Rpc("get_my_quiz_answers")
 
 func result(query_result) -> void:

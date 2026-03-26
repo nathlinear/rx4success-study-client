@@ -117,7 +117,7 @@ layout_mode = 2
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Control/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/UsernameVBox" unique_id=1984289877]
 layout_mode = 2
-text = "By confirming your username, you consent to the collection and storage of your personal data on how you use this application."
+text = "By playing Rx4Success you consent to the collection and storage of personal data."
 fit_content = true
 
 [node name="Button" type="Button" parent="CanvasLayer/Control/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/UsernameVBox" unique_id=921577220]

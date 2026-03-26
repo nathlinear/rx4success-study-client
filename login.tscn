@@ -100,6 +100,7 @@ layout_mode = 2
 text = "Login"
 
 [node name="RegisterButton" type="Button" parent="CanvasLayer/Control/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/PasswordVBox" unique_id=1324073402]
+visible = false
 layout_mode = 2
 text = "Register"
 

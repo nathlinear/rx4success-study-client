@@ -38,12 +38,12 @@ color = Color(0.41215247, 0.41215247, 0.41215247, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control" unique_id=1341626203]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -236.5
-offset_bottom = 236.5
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 143.0
+offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -54,7 +54,7 @@ theme_override_constants/separation = 35
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer3" unique_id=718788134]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 20
 
 [node name="QuestionLabel" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer3/VBoxContainer" unique_id=1406356468]
 custom_minimum_size = Vector2(0, 160)
@@ -96,17 +96,17 @@ autowrap_mode = 3
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Result" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer3/VBoxContainer2" unique_id=873773490]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-horizontal_alignment = 1
-autowrap_mode = 3
-
 [node name="NextButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer3/VBoxContainer2" unique_id=740843193]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 disabled = true
 text = "Next"
+
+[node name="Result" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer3/VBoxContainer2" unique_id=873773490]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="UserLabel" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer3/VBoxContainer2" unique_id=1675433694]
 visible = false

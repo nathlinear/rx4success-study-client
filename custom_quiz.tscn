@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cxb4aay4hogqb"]
 
 [ext_resource type="Script" uid="uid://cgp62ftsdhngq" path="res://custom_quiz.gd" id="1_2hxhd"]
-[ext_resource type="Texture2D" uid="uid://dstdxxsgw2nm1" path="res://Untitled design.jpg" id="2_34pxq"]
 [ext_resource type="Script" uid="uid://8r1stq8oxlu1" path="res://user_label.gd" id="3_lsj6p"]
 
 [node name="Quiz" type="Node2D" unique_id=1623613907 node_paths=PackedStringArray("quit_button", "next_button", "question_label", "result_label", "button1", "button2", "button3", "button4", "time_label")]
@@ -27,16 +26,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control" unique_id=2043899213]
+[node name="Background" type="ColorRect" parent="CanvasLayer/Control" unique_id=1703570698]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 850.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_34pxq")
-expand_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control" unique_id=1341626203]
 layout_mode = 1

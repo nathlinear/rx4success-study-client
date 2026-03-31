@@ -6,6 +6,9 @@ extends Node2D
 @export var back_button: Button
 
 func _ready() -> void:
+	ThemeManager.detect_system_theme()
+	ThemeManager.apply_theme($CanvasLayer/Control)
+	
 	time_spinbox.min_value = 1
 	time_spinbox.max_value = 20
 	time_spinbox.step = 1

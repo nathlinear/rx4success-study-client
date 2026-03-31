@@ -4,60 +4,76 @@
 
 [node name="CustomQuizSetup" type="Node2D" unique_id=1240381807 node_paths=PackedStringArray("time_spinbox", "questions_spinbox", "start_button", "back_button")]
 script = ExtResource("1_hrjqg")
-time_spinbox = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/TimeSpinBox")
-questions_spinbox = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/QuestionsSpinBox")
-start_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/StartButton")
-back_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/BackButton")
+time_spinbox = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer/TimeSpinBox")
+questions_spinbox = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer/QuestionsSpinBox")
+start_button = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer/StartButton")
+back_button = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer/BackButton")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=190478258]
 
 [node name="Control" type="Control" parent="CanvasLayer" unique_id=824346441]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="CanvasLayer/Control" unique_id=590972534]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control" unique_id=761279098]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control" unique_id=185071940]
-layout_mode = 0
-offset_right = 150.0
-offset_bottom = 200.0
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control" unique_id=760725785]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer" unique_id=1011724988]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/CenterContainer" unique_id=185071940]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=659556512]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer/MarginContainer" unique_id=1011724988]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=659556512]
 layout_mode = 2
 text = "Settings"
 
-[node name="TimeLabel" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=796112110]
+[node name="TimeLabel" type="Label" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=796112110]
 layout_mode = 2
-text = "Time"
+text = "Time (mins)"
 
-[node name="TimeSpinBox" type="SpinBox" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=2034506366]
+[node name="TimeSpinBox" type="SpinBox" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=2034506366]
 layout_mode = 2
 min_value = 1.0
 max_value = 20.0
 value = 5.0
 
-[node name="QuestionsLabel" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=2127002561]
+[node name="QuestionsLabel" type="Label" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=2127002561]
 layout_mode = 2
 text = "Questions"
 
-[node name="QuestionsSpinBox" type="SpinBox" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1387812466]
+[node name="QuestionsSpinBox" type="SpinBox" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=1387812466]
 layout_mode = 2
 min_value = 10.0
 max_value = 50.0
 value = 10.0
 
-[node name="StartButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=48568192]
+[node name="StartButton" type="Button" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=48568192]
 layout_mode = 2
 text = "Start"
 
-[node name="BackButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1748215531]
+[node name="BackButton" type="Button" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=1748215531]
 layout_mode = 2
 text = "Back"

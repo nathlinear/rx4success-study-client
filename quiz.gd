@@ -21,6 +21,9 @@ var saved_choices: Array[String] = []
 var time_taken: float = 0.0
 
 func _ready() -> void:
+	ThemeManager.detect_system_theme()
+	ThemeManager.apply_theme($CanvasLayer/Control)
+	
 	quit_button.pressed.connect(_change_scene)
 	next_button.pressed.connect(_gen_question)
 	

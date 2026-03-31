@@ -6,6 +6,9 @@ extends Node2D
 @export var logout_button: Button
 
 func _ready() -> void:
+	ThemeManager.detect_system_theme()
+	ThemeManager.apply_theme($CanvasLayer/Control)
+	
 	print("MAIN MENU READY: client = ", Supabase.auth.client)
 
 	if not quiz_button.pressed.is_connected(_go_to_quiz):

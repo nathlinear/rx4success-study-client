@@ -1,6 +1,5 @@
 extends Node2D
 
-
 @export var quit_button: Button
 @export var next_button: Button
 
@@ -12,6 +11,7 @@ extends Node2D
 @export var button3: Button
 @export var button4: Button
 
+@export var question_tracker_label: Label
 @export var time_label: Label
 
 var buttons: Array[Button] = []
@@ -19,50 +19,51 @@ var buttons: Array[Button] = []
 var correct = ""
 var saved_choices: Array[String] = []
 var time_taken: float = 0.0
+var questions_answered: int = 0
 
 func _ready() -> void:
 	ThemeManager.detect_system_theme()
 	ThemeManager.apply_theme($CanvasLayer/Control)
-	
+
 	quit_button.pressed.connect(_change_scene)
 	next_button.pressed.connect(_gen_question)
-	
+
 	buttons.append(button1)
 	buttons.append(button2)
 	buttons.append(button3)
 	buttons.append(button4)
-	
-	
-	# disable buttons initially so that things dont break
+
 	for button in buttons:
 		button.pressed.connect(choice_made.bind(button))
 		button.disabled = true
-	
-	Supabase.database.error.connect(_error)
-	
+
+	if not Supabase.database.error.is_connected(_error):
+		Supabase.database.error.connect(_error)
+
+	questions_answered = 0
+	_update_question_tracker()
 	_gen_question()
 
-func _gen_question():
-	#var task = Supabase.database.Rpc("get_question", {"p_level": 2})
+func _gen_question() -> void:
 	var task = Supabase.database.Rpc("get_question")
 	await task.completed
+
 	var data = task.data[0]
 	question_label.text = "Level %d - %s" % [int(data["Level"]), data["Question"]]
-	
+
 	correct = data["Answer"]
-	
+
 	var choices: Array[String] = []
 	for choice in data["Choices"].split(";"):
 		choices.append(choice.strip_edges())
-	
+
 	for i in range(len(buttons)):
 		buttons[i].text = choices[i]
-	
+
 	for button in buttons:
 		button.disabled = false
-	
+
 	next_button.disabled = true
-	
 	result_label.text = ""
 	time_taken = 0.0
 	saved_choices = choices.duplicate()
@@ -78,22 +79,25 @@ func _process(delta: float) -> void:
 func _change_scene() -> void:
 	get_tree().change_scene_to_file("res://stats.tscn")
 
-func choice_made(chosen: Button):
-	
+func choice_made(chosen: Button) -> void:
 	if chosen.text == correct:
 		result_label.text = "Correct\n"
 	else:
 		result_label.text = "Incorrect\n"
-	
+
 	result_label.text += "The correct answer was %s" % correct
-	
-	# disable all buttons until next question
+
 	for button in buttons:
 		button.disabled = true
-	
+
+	questions_answered += 1
+	_update_question_tracker()
+
 	insert_answer(chosen.text, correct, saved_choices, time_taken)
 	next_button.disabled = false
 
+func _update_question_tracker() -> void:
+	question_tracker_label.text = "Answered: %d" % questions_answered
 
 func insert_answer(chosen: String, correct_answer: String, choices: Array[String], time: float) -> void:
 	var query = (
@@ -113,7 +117,6 @@ func insert_answer(chosen: String, correct_answer: String, choices: Array[String
 	await task.completed
 	print(task.data)
 	print(task.error)
-
 
 func _error(err):
 	result_label.text = str(err)

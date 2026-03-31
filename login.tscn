@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://d55js8ke0fsl" path="res://login.gd" id="1_xlo4h"]
 [ext_resource type="Texture2D" uid="uid://cui64y8cacjun" path="res://Pharm-Background.jpg" id="2_3n56f"]
+[ext_resource type="Texture2D" uid="uid://d3lmguy4la77n" path="res://checked.png" id="3_6hqeh"]
 [ext_resource type="PackedScene" uid="uid://dw6h2bsgwd23j" path="res://rx4success.tscn" id="3_xlo4h"]
+[ext_resource type="Texture2D" uid="uid://byerr8w8nrf5g" path="res://unchecked.png" id="4_edd8a"]
 
 [node name="Login" type="Node2D" unique_id=151751797 node_paths=PackedStringArray("email_field", "pass_field", "login_button", "info", "register_button", "passwordVBox", "usernameVBox", "createUsernameButton", "createUsernameField", "consentCheckBox")]
 script = ExtResource("1_xlo4h")
@@ -127,7 +129,10 @@ fit_content = true
 layout_mode = 2
 theme_override_constants/h_separation = 20
 theme_override_font_sizes/font_size = 32
+theme_override_icons/checked = ExtResource("3_6hqeh")
+theme_override_icons/unchecked = ExtResource("4_edd8a")
 text = "I consent"
+expand_icon = true
 
 [node name="Button" type="Button" parent="CanvasLayer/Control/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/UsernameVBox" unique_id=921577220]
 layout_mode = 2

@@ -27,6 +27,13 @@ func _ready() -> void:
 		Supabase.database.error.connect(_error)
 
 	show_username()
+	myfunc()
+
+func myfunc():
+	var query = SupabaseQuery.new().select(["chosen_answer"]).from("quiz_answers")
+	var task: DatabaseTask = Supabase.database.query(query)
+	await task.completed
+	print(task.data)
 
 func _go_to_quiz() -> void:
 	get_tree().change_scene_to_file("res://quiz.tscn")

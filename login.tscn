@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cui64y8cacjun" path="res://Pharm-Background.jpg" id="2_3n56f"]
 [ext_resource type="PackedScene" uid="uid://dw6h2bsgwd23j" path="res://rx4success.tscn" id="3_xlo4h"]
 
-[node name="Login" type="Node2D" unique_id=151751797 node_paths=PackedStringArray("email_field", "pass_field", "login_button", "info", "register_button", "passwordVBox", "usernameVBox", "createUsernameButton", "createUsernameField")]
+[node name="Login" type="Node2D" unique_id=151751797 node_paths=PackedStringArray("email_field", "pass_field", "login_button", "info", "register_button", "passwordVBox", "usernameVBox", "createUsernameButton", "createUsernameField", "consentCheckBox")]
 script = ExtResource("1_xlo4h")
 email_field = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/PasswordVBox/EmailField")
 pass_field = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/PasswordVBox/PassField")
@@ -15,6 +15,7 @@ passwordVBox = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/Mar
 usernameVBox = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/UsernameVBox")
 createUsernameButton = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/UsernameVBox/Button")
 createUsernameField = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/UsernameVBox/LineEdit")
+consentCheckBox = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/UsernameVBox/CheckBox")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=94556767]
 
@@ -122,11 +123,16 @@ layout_mode = 2
 text = "By playing Rx4Success you consent to the collection and storage of personal data."
 fit_content = true
 
+[node name="CheckBox" type="CheckBox" parent="CanvasLayer/Control/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/UsernameVBox" unique_id=1668199954]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_font_sizes/font_size = 32
+text = "I consent"
+
 [node name="Button" type="Button" parent="CanvasLayer/Control/CenterContainer/MarginContainer/MarginContainer/VBoxContainer/UsernameVBox" unique_id=921577220]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "I consent.
-Create username."
+text = "Create Username"
 
 [node name="Info" type="RichTextLabel" parent="CanvasLayer/Control/CenterContainer/MarginContainer/MarginContainer/VBoxContainer" unique_id=1422265656]
 self_modulate = Color(1, 0.69803923, 0, 1)

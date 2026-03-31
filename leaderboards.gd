@@ -9,14 +9,16 @@ func _ready() -> void:
 	var task = Supabase.database.Rpc("get_leaderboard")
 	await task.completed
 	print(task.data)
-
+	
 	create_listing("Username", -1.0)
 	
-	
-	
+	var new_dict: Dictionary[String, float] = {}
+	var scores: Array[float] = []
 	for item in task.data:
 		if !(item is Dictionary):
 			continue
+		
+		
 		
 		var total_questions = item["total_questions_answered"]
 		var accuracy: float = item["total_correct"] / total_questions
@@ -25,7 +27,16 @@ func _ready() -> void:
 		print(item["username"])
 		print(score)
 		print("---")
-		create_listing(item["username"], score)
+		
+		new_dict.set(item["username"], score)
+		scores.append(score)
+	
+	scores.sort()
+	scores.reverse()
+	
+	for score in scores:
+		var username = new_dict.find_key(score)
+		create_listing(username, score)
 
 func create_listing(username: String, score: float):
 	var leftLabel = Label.new()

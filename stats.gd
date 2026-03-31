@@ -59,7 +59,10 @@ func get_stats() -> void:
 	label_acc.text = String.num(acc_q, 2) + "%"
 	label_avg_t.text = String.num(avg_t, 2) + "s"
 	label_total_t.text = String.num(total_t, 2) + "s"
-	label_score.text = String.num(score, 2)
+	if is_nan(score):
+		label_score.text = "0.0"
+	else:
+		label_score.text = String.num(score, 2)
 	
 	#print(q_correct)
 	

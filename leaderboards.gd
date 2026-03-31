@@ -31,5 +31,9 @@ func create_listing(username: String, score: float):
 	rightLabel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	rightLabel.text = String.num(score, 2) + "   "
 	
+	if !ThemeManager.is_dark_mode:
+		leftLabel.add_theme_color_override("font_color", ThemeManager.text_dark)
+		rightLabel.add_theme_color_override("font_color", ThemeManager.text_dark)
+	
 	grid.add_child(leftLabel)
 	grid.add_child(rightLabel)

@@ -45,7 +45,7 @@ func create_listing(username: String, score: float):
 	rightLabel.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	rightLabel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	if score > 0:
-		rightLabel.text = String.num(score, 2) + "   "
+		rightLabel.text = String.num(score, 2).pad_decimals(2) + "   "
 	else:
 		rightLabel.text = "Score   "
 	

@@ -39,9 +39,6 @@ func _ready() -> void:
 		button.pressed.connect(choice_made.bind(button))
 		button.disabled = true
 
-	if not Supabase.database.rpc_completed.is_connected(_response):
-		Supabase.database.rpc_completed.connect(_response)
-
 	if not Supabase.database.error.is_connected(_error):
 		Supabase.database.error.connect(_error)
 
@@ -68,7 +65,7 @@ func _process(delta: float) -> void:
 	_update_time_label()
 
 func _update_time_label() -> void:
-	var minutes = int(time_left) / 60
+	var minutes = int(time_left / 60)
 	var seconds = int(time_left) % 60
 	time_label.text = "Time Left: %02d:%02d" % [minutes, seconds]
 
@@ -84,36 +81,30 @@ func _gen_question() -> void:
 
 	for button in buttons:
 		button.disabled = true
-
-	Supabase.database.Rpc("get_question")
-
-func _response(msg: String) -> void:
-	if quiz_over:
-		return
-
-	var arr = msg.split("||")
-
-	var q = "Which of the following is a common indication for %s?" % arr[0]
-	question_label.text = q
-
-	correct = arr[1]
-
+	
+	var task = Supabase.database.Rpc("get_question")
+	await task.completed
+	var data = task.data[0]
+	question_label.text = "Level %d - %s" % [int(data["Level"]), data["Question"]]
+	
+	correct = data["Answer"]
+	
 	var choices: Array[String] = []
-	for i in range(4):
-		choices.append(arr[i])
-
-	choices.shuffle()
-	saved_choices = choices.duplicate()
-
-	for i in range(buttons.size()):
+	for choice in data["Choices"].split(";"):
+		choices.append(choice.strip_edges())
+	
+	for i in range(len(buttons)):
 		buttons[i].text = choices[i]
-
+	
 	for button in buttons:
 		button.disabled = false
-
-	result_label.text = ""
+	
 	next_button.disabled = true
+	
+	result_label.text = ""
 	question_time_taken = 0.0
+	saved_choices = choices.duplicate()
+
 
 func choice_made(chosen: Button) -> void:
 	if quiz_over:
@@ -176,8 +167,5 @@ func _error(err) -> void:
 	result_label.text = str(err)
 
 func _exit_tree() -> void:
-	if Supabase.database.rpc_completed.is_connected(_response):
-		Supabase.database.rpc_completed.disconnect(_response)
-
 	if Supabase.database.error.is_connected(_error):
 		Supabase.database.error.disconnect(_error)

@@ -32,57 +32,51 @@ func _ready() -> void:
 	buttons.append(button3)
 	buttons.append(button4)
 	
+	
 	# disable buttons initially so that things dont break
 	for button in buttons:
 		button.pressed.connect(choice_made.bind(button))
 		button.disabled = true
 	
-	Supabase.database.rpc_completed.connect(_response)
 	Supabase.database.error.connect(_error)
 	
 	_gen_question()
 
+func _gen_question():
+	#var task = Supabase.database.Rpc("get_question", {"p_level": 2})
+	var task = Supabase.database.Rpc("get_question")
+	await task.completed
+	var data = task.data[0]
+	question_label.text = "Level %d - %s" % [int(data["Level"]), data["Question"]]
+	
+	correct = data["Answer"]
+	
+	var choices: Array[String] = []
+	for choice in data["Choices"].split(";"):
+		choices.append(choice.strip_edges())
+	
+	for i in range(len(buttons)):
+		buttons[i].text = choices[i]
+	
+	for button in buttons:
+		button.disabled = false
+	
+	next_button.disabled = true
+	
+	result_label.text = ""
+	time_taken = 0.0
+	saved_choices = choices.duplicate()
+
 func _process(delta: float) -> void:
 	time_taken += delta
 
-	var minutes = int(time_taken) / 60
+	var minutes = int(time_taken / 60)
 	var seconds = int(time_taken) % 60
 
 	time_label.text = "Time: %02d:%02d" % [minutes, seconds]
 
 func _change_scene() -> void:
 	get_tree().change_scene_to_file("res://stats.tscn")
-
-func _gen_question() -> void:
-	Supabase.database.Rpc("get_question")
-
-func _response(msg: String):
-	# msg is a dictionary with keys name, correct, wrong1, wrong2, and wrong3
-	var arr = msg.split("||")
-	
-	var q = "Which of the following is a common indication for %s?" % arr[0]
-	question_label.text = q
-	
-	# save correct answer for later checking
-	correct = arr[1]
-	
-	# make an array of all the choices, randomize it, then assign each buttonn
-	var choices: Array[String] = []
-	for i in range(4):
-		choices.append(arr[i])
-	
-	choices.shuffle()
-	saved_choices = choices.duplicate()
-	
-	for i in range(len(buttons)):
-		buttons[i].text = choices[i]
-	
-	# reenable all buttons
-	for button in buttons:
-		button.disabled = false
-	
-	result_label.text = ""
-	time_taken = 0.0
 
 func choice_made(chosen: Button):
 	
@@ -97,20 +91,21 @@ func choice_made(chosen: Button):
 	for button in buttons:
 		button.disabled = true
 	
-	insert_answer(chosen.text, correct, saved_choices, 0.1)
+	insert_answer(chosen.text, correct, saved_choices, time_taken)
+	next_button.disabled = false
 
 
-func insert_answer(chosen: String, correct: String, choices: Array[String], time: float) -> void:
+func insert_answer(chosen: String, correct_answer: String, choices: Array[String], time: float) -> void:
 	var query = (
 		SupabaseQuery.new()
 		.from("quiz_answers")
 		.insert(
 			[{
 				"chosen_answer": chosen,
-				"was_correct": chosen == correct,
+				"was_correct": chosen == correct_answer,
 				"question_choices": choices,
-				"correct_answer": correct,
-				"time_taken": time_taken
+				"correct_answer": correct_answer,
+				"time_taken": time
 			}]
 		)
 	)
@@ -124,8 +119,5 @@ func _error(err):
 	result_label.text = str(err)
 
 func _exit_tree() -> void:
-	if Supabase.database.rpc_completed.is_connected(_response):
-		Supabase.database.rpc_completed.disconnect(_response)
-
 	if Supabase.database.error.is_connected(_error):
 		Supabase.database.error.disconnect(_error)

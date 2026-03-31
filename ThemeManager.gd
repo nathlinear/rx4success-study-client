@@ -35,7 +35,8 @@ func apply_theme(root: Control) -> void:
 
 func _apply_recursive(node: Node, text_color: Color, button_color: Color) -> void:
 	if node is Label:
-		node.add_theme_color_override("font_color", text_color)
+		if !node.has_theme_color_override("font_color"):
+			node.add_theme_color_override("font_color", text_color)
 
 	elif node is Button:
 		node.add_theme_color_override("font_color", text_color)

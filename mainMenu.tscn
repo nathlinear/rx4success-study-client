@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bkpcfp4p5q6tu"]
 
 [ext_resource type="Script" uid="uid://o8cbo2lwdqs3" path="res://main_menu.gd" id="1_wut1r"]
+[ext_resource type="PackedScene" uid="uid://dw6h2bsgwd23j" path="res://rx4success.tscn" id="2_83s16"]
 
 [node name="MainMenu" type="Node2D" unique_id=151751797 node_paths=PackedStringArray("quiz_button", "custom_quiz_button", "stats_button", "logout_button")]
 script = ExtResource("1_wut1r")
@@ -28,6 +29,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.48178947, 0.48178947, 0.48178947, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control" unique_id=134423613]
 layout_mode = 1
@@ -67,3 +69,6 @@ text = "Log out"
 [node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1137981170]
 layout_mode = 2
 text = "Logged in as: {username}"
+
+[node name="Rx4Success" parent="CanvasLayer/Control" unique_id=353884905 instance=ExtResource("2_83s16")]
+layout_mode = 1

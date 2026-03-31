@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d55js8ke0fsl" path="res://login.gd" id="1_xlo4h"]
 [ext_resource type="Texture2D" uid="uid://cui64y8cacjun" path="res://Pharm-Background.jpg" id="2_3n56f"]
+[ext_resource type="PackedScene" uid="uid://dw6h2bsgwd23j" path="res://rx4success.tscn" id="3_xlo4h"]
 
 [node name="Login" type="Node2D" unique_id=151751797 node_paths=PackedStringArray("email_field", "pass_field", "login_button", "info", "register_button", "passwordVBox", "usernameVBox", "createUsernameButton", "createUsernameField")]
 script = ExtResource("1_xlo4h")
@@ -131,3 +132,6 @@ Create username."
 self_modulate = Color(1, 0.69803923, 0, 1)
 layout_mode = 2
 fit_content = true
+
+[node name="Rx4Success" parent="CanvasLayer/Control" unique_id=353884905 instance=ExtResource("3_xlo4h")]
+layout_mode = 1

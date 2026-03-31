@@ -8,6 +8,9 @@ extends Node2D
 @export var label_score: Label
 
 func _ready() -> void:
+	ThemeManager.detect_system_theme()
+	ThemeManager.apply_theme($CanvasLayer/Control)
+	
 	if Supabase.auth.client == null:
 		return
 	

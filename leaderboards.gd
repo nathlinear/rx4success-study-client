@@ -32,8 +32,8 @@ func create_listing(username: String, score: float):
 	rightLabel.text = String.num(score, 2) + "   "
 	
 	if !ThemeManager.is_dark_mode:
-		leftLabel.add_theme_color_override("font_color", ThemeManager.text_dark)
-		rightLabel.add_theme_color_override("font_color", ThemeManager.text_dark)
+		leftLabel.add_theme_color_override("font_color", ThemeManager.text_light)
+		rightLabel.add_theme_color_override("font_color", ThemeManager.text_light)
 	
 	grid.add_child(leftLabel)
 	grid.add_child(rightLabel)

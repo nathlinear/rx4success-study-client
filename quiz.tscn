@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://khi6moika1h2" path="res://quiz.gd" id="1_kninm"]
 [ext_resource type="Script" uid="uid://8r1stq8oxlu1" path="res://user_label.gd" id="2_k7kv1"]
 
-[node name="Quiz" type="Node2D" unique_id=1623613907 node_paths=PackedStringArray("quit_button", "next_button", "question_label", "result_label", "button1", "button2", "button3", "button4", "time_label")]
+[node name="Quiz" type="Node2D" unique_id=1623613907 node_paths=PackedStringArray("quit_button", "next_button", "question_label", "result_label", "button1", "button2", "button3", "button4", "question_tracker_label", "time_label")]
 script = ExtResource("1_kninm")
 quit_button = NodePath("CanvasLayer/Control/MarginContainer2/Quit")
 next_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer3/VBoxContainer2/NextButton")
@@ -13,7 +13,8 @@ button1 = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer3/VBoxConta
 button2 = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer3/VBoxContainer/Button2")
 button3 = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer3/VBoxContainer/Button3")
 button4 = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer3/VBoxContainer/Button4")
-time_label = NodePath("CanvasLayer/Control/MarginContainer3/Time")
+question_tracker_label = NodePath("CanvasLayer/Control/MarginContainer3/VBoxContainer/QuestionTrackerLabel")
+time_label = NodePath("CanvasLayer/Control/MarginContainer3/VBoxContainer/Time")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=608881412]
 follow_viewport_enabled = true
@@ -118,7 +119,14 @@ layout_mode = 1
 offset_right = 363.0
 offset_bottom = 253.0
 
-[node name="Time" type="Label" parent="CanvasLayer/Control/MarginContainer3" unique_id=839824834]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer3" unique_id=905070977]
+layout_mode = 2
+
+[node name="QuestionTrackerLabel" type="Label" parent="CanvasLayer/Control/MarginContainer3/VBoxContainer" unique_id=1451926499]
+layout_mode = 2
+text = "Answered: 0"
+
+[node name="Time" type="Label" parent="CanvasLayer/Control/MarginContainer3/VBoxContainer" unique_id=839824834]
 layout_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control" unique_id=520336300]

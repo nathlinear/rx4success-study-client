@@ -11,6 +11,7 @@ extends Node2D
 @export var button3: Button
 @export var button4: Button
 
+@export var question_tracker_label: Label
 @export var time_label: Label
 
 var buttons: Array[Button] = []
@@ -28,7 +29,7 @@ var quiz_over: bool = false
 func _ready() -> void:
 	ThemeManager.detect_system_theme()
 	ThemeManager.apply_theme($CanvasLayer/Control)
-	
+
 	quit_button.text = "Quit"
 	quit_button.pressed.connect(_quit_to_menu)
 	next_button.pressed.connect(_gen_question)
@@ -44,9 +45,11 @@ func _ready() -> void:
 
 	max_questions = CustomQuizSettings.question_count
 	time_left = float(CustomQuizSettings.time_minutes * 60)
+	total_questions_answered = 0
 
-	next_button.disabled = true
 	_update_time_label()
+	_update_question_tracker()
+	next_button.disabled = true
 	_gen_question()
 
 func _process(delta: float) -> void:
@@ -69,6 +72,9 @@ func _update_time_label() -> void:
 	var seconds = int(time_left) % 60
 	time_label.text = "Time Left: %02d:%02d" % [minutes, seconds]
 
+func _update_question_tracker() -> void:
+	question_tracker_label.text = "Question %d / %d" % [total_questions_answered, max_questions]
+
 func _quit_to_menu() -> void:
 	get_tree().change_scene_to_file("res://stats.tscn")
 
@@ -81,30 +87,29 @@ func _gen_question() -> void:
 
 	for button in buttons:
 		button.disabled = true
-	
+
 	var task = Supabase.database.Rpc("get_question")
 	await task.completed
+
 	var data = task.data[0]
 	question_label.text = "Level %d - %s" % [int(data["Level"]), data["Question"]]
-	
+
 	correct = data["Answer"]
-	
+
 	var choices: Array[String] = []
 	for choice in data["Choices"].split(";"):
 		choices.append(choice.strip_edges())
-	
+
 	for i in range(len(buttons)):
 		buttons[i].text = choices[i]
-	
+
 	for button in buttons:
 		button.disabled = false
-	
+
 	next_button.disabled = true
-	
 	result_label.text = ""
 	question_time_taken = 0.0
 	saved_choices = choices.duplicate()
-
 
 func choice_made(chosen: Button) -> void:
 	if quiz_over:
@@ -121,6 +126,7 @@ func choice_made(chosen: Button) -> void:
 		button.disabled = true
 
 	total_questions_answered += 1
+	_update_question_tracker()
 
 	insert_answer(chosen.text, correct, saved_choices, question_time_taken)
 

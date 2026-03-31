@@ -10,6 +10,7 @@ func _ready() -> void:
 	await task.completed
 	print(task.data)
 
+	create_listing("Username", -1.0)
 	for item in task.data:
 		if !(item is Dictionary):
 			continue
@@ -29,7 +30,10 @@ func create_listing(username: String, score: float):
 	var rightLabel = Label.new()
 	rightLabel.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	rightLabel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	rightLabel.text = String.num(score, 2) + "   "
+	if score > 0:
+		rightLabel.text = String.num(score, 2) + "   "
+	else:
+		rightLabel.text = "Score   "
 	
 	if !ThemeManager.is_dark_mode:
 		leftLabel.add_theme_color_override("font_color", ThemeManager.text_light)

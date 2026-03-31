@@ -54,7 +54,7 @@ text = "Flashcards"
 
 [node name="QuizButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1615706292]
 layout_mode = 2
-text = "Free Quiz mode"
+text = "Untimed Quiz mode"
 
 [node name="CustomButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1954225588]
 layout_mode = 2

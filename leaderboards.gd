@@ -11,6 +11,9 @@ func _ready() -> void:
 	print(task.data)
 
 	create_listing("Username", -1.0)
+	
+	
+	
 	for item in task.data:
 		if !(item is Dictionary):
 			continue

@@ -48,7 +48,7 @@ func _process(delta: float) -> void:
 	time_label.text = "Time: %02d:%02d" % [minutes, seconds]
 
 func _change_scene() -> void:
-	get_tree().change_scene_to_file("res://mainMenu.tscn")
+	get_tree().change_scene_to_file("res://stats.tscn")
 
 func _gen_question() -> void:
 	Supabase.database.Rpc("get_question")

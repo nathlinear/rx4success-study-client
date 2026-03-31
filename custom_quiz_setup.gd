@@ -1,0 +1,28 @@
+extends Node2D
+
+@export var time_spinbox: SpinBox
+@export var questions_spinbox: SpinBox
+@export var start_button: Button
+@export var back_button: Button
+
+func _ready() -> void:
+	time_spinbox.min_value = 1
+	time_spinbox.max_value = 20
+	time_spinbox.step = 1
+	time_spinbox.value = CustomQuizSettings.time_minutes
+
+	questions_spinbox.min_value = 10
+	questions_spinbox.max_value = 50
+	questions_spinbox.step = 1
+	questions_spinbox.value = CustomQuizSettings.question_count
+
+	start_button.pressed.connect(_start_custom_quiz)
+	back_button.pressed.connect(_go_back)
+
+func _start_custom_quiz() -> void:
+	CustomQuizSettings.time_minutes = int(time_spinbox.value)
+	CustomQuizSettings.question_count = int(questions_spinbox.value)
+	get_tree().change_scene_to_file("res://custom_quiz.tscn")
+
+func _go_back() -> void:
+	get_tree().change_scene_to_file("res://mainMenu.tscn")

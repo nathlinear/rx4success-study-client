@@ -41,7 +41,11 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	time_taken += delta
-	time_label.text = str(time_taken)
+
+	var minutes = int(time_taken) / 60
+	var seconds = int(time_taken) % 60
+
+	time_label.text = "Time: %02d:%02d" % [minutes, seconds]
 
 func _change_scene() -> void:
 	get_tree().change_scene_to_file("res://mainMenu.tscn")
@@ -115,3 +119,10 @@ func insert_answer(chosen: String, correct: String, choices: Array[String], time
 
 func _error(err):
 	result_label.text = str(err)
+
+func _exit_tree() -> void:
+	if Supabase.database.rpc_completed.is_connected(_response):
+		Supabase.database.rpc_completed.disconnect(_response)
+
+	if Supabase.database.error.is_connected(_error):
+		Supabase.database.error.disconnect(_error)

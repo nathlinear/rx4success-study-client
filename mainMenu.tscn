@@ -3,9 +3,10 @@
 [ext_resource type="Script" uid="uid://o8cbo2lwdqs3" path="res://main_menu.gd" id="1_wut1r"]
 [ext_resource type="Texture2D" uid="uid://dstdxxsgw2nm1" path="res://Untitled design.jpg" id="2_83s16"]
 
-[node name="MainMenu" type="Node2D" unique_id=151751797 node_paths=PackedStringArray("quiz_button", "stats_button", "logout_button")]
+[node name="MainMenu" type="Node2D" unique_id=151751797 node_paths=PackedStringArray("quiz_button", "custom_quiz_button", "stats_button", "logout_button")]
 script = ExtResource("1_wut1r")
 quiz_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/QuizButton")
+custom_quiz_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/CustomButton")
 stats_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/Button2")
 logout_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/Button3")
 
@@ -52,11 +53,15 @@ text = "Flashcards"
 
 [node name="QuizButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1615706292]
 layout_mode = 2
-text = "Quiz mode"
+text = "Free Quiz mode"
+
+[node name="CustomButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1954225588]
+layout_mode = 2
+text = "Custom Quiz Mode"
 
 [node name="Button2" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=884080852]
 layout_mode = 2
-text = "Stats"
+text = "My Stats"
 
 [node name="Button3" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1772817271]
 layout_mode = 2

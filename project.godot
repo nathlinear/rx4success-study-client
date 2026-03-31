@@ -24,6 +24,7 @@ config/icon="res://icon.svg"
 
 Supabase="*uid://dxa1kn7re5iqf"
 Global="*uid://dswivbddy3kwv"
+CustomQuizSettings="*uid://bwfrj8wx6qjv7"
 
 [display]
 

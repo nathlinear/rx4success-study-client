@@ -3,12 +3,14 @@
 [ext_resource type="Script" uid="uid://o8cbo2lwdqs3" path="res://main_menu.gd" id="1_wut1r"]
 [ext_resource type="PackedScene" uid="uid://dw6h2bsgwd23j" path="res://rx4success.tscn" id="2_83s16"]
 
-[node name="MainMenu" type="Node2D" unique_id=151751797 node_paths=PackedStringArray("quiz_button", "custom_quiz_button", "stats_button", "logout_button")]
+[node name="MainMenu" type="Node2D" unique_id=151751797 node_paths=PackedStringArray("quiz_button", "custom_quiz_button", "stats_button", "leaderboard_btn", "logout_button", "username_label")]
 script = ExtResource("1_wut1r")
 quiz_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/QuizButton")
 custom_quiz_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/CustomButton")
-stats_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/Button2")
-logout_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/Button3")
+stats_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/StatsButton")
+leaderboard_btn = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/LeaderboardButton")
+logout_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/LogOutButton")
+username_label = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/UsernameLabel")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=94556767]
 
@@ -58,15 +60,19 @@ text = "Free Quiz mode"
 layout_mode = 2
 text = "Custom Quiz Mode"
 
-[node name="Button2" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=884080852]
+[node name="StatsButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=884080852]
 layout_mode = 2
 text = "My Stats"
 
-[node name="Button3" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1772817271]
+[node name="LeaderboardButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=435037764]
+layout_mode = 2
+text = "Leaderboard"
+
+[node name="LogOutButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1772817271]
 layout_mode = 2
 text = "Log out"
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1137981170]
+[node name="UsernameLabel" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1137981170]
 layout_mode = 2
 text = "Logged in as: {username}"
 

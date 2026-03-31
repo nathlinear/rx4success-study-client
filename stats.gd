@@ -1,4 +1,5 @@
 extends Node2D
+class_name Statistics
 
 @export var label_total_q: Label
 @export var label_correct_q: Label
@@ -52,8 +53,7 @@ func get_stats() -> void:
 	print(acc_q)
 	print(avg_t)
 	
-	var score = acc_q - (1 * log(avg_t))
-	score = score * v(total_q, 10) # reduce score of low total questions answered
+	var score = calc_score(acc_q, avg_t, total_q)
 	
 	print(score)
 	
@@ -66,15 +66,11 @@ func get_stats() -> void:
 		label_score.text = "0.0"
 	else:
 		label_score.text = String.num(score, 2)
-	
-	#print(q_correct)
-	
-	# total questions answered
-	# total questions right
-	# total time spent on quiz
-	# acurracy rate
-	# average time taken per question
-	# score = avg_acc - (0.001 * log(avg_time))
 
-func v(num: float, k: int):
+static func calc_score(accuracy_percent: float, average_time: float, total_q: int):
+	var score = accuracy_percent - (1 * log(average_time))
+	score = score * v(total_q, 10) # reduce score of low total questions answered
+	return score
+
+static func v(num: float, k: int):
 	return min(num / (num + k), 1.0)

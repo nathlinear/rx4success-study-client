@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://f5a5tkldeo2v"]
+
+[ext_resource type="Script" uid="uid://c82skxrx7l2nc" path="res://leaderboards.gd" id="1_pf0yp"]
+[ext_resource type="Theme" uid="uid://dpqcqdtc7258q" path="res://default.tres" id="2_lfd8q"]
+[ext_resource type="Script" uid="uid://dfv2dgpxpmvva" path="res://quit_button.gd" id="2_qhm5l"]
+[ext_resource type="Script" uid="uid://cdsmk373oxxr1" path="res://scroll_container.gd" id="2_tibs2"]
+
+[node name="Leaderboards" type="Node2D" unique_id=687210525 node_paths=PackedStringArray("grid")]
+script = ExtResource("1_pf0yp")
+grid = NodePath("CanvasLayer/Control/MarginContainer/ScrollContainer/GridContainer")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=109725046]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=250517574]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="CanvasLayer/Control" unique_id=371826618]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.48178947, 0.48178947, 0.48178947, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control" unique_id=884485875]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 207.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/MarginContainer" unique_id=1887318892]
+layout_mode = 2
+script = ExtResource("2_tibs2")
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control/MarginContainer/ScrollContainer" unique_id=1048630428]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_lfd8q")
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control" unique_id=1912878593]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -313.0
+offset_bottom = 200.0
+grow_horizontal = 0
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/Control/MarginContainer2" unique_id=1784615780]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Return to Menu"
+script = ExtResource("2_qhm5l")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control" unique_id=1802164461]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -107.0
+offset_top = 207.0
+offset_right = 107.0
+offset_bottom = 252.0
+grow_horizontal = 2
+text = "Leaderboards"

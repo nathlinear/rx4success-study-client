@@ -3,7 +3,9 @@ extends Node2D
 @export var quiz_button: Button
 @export var custom_quiz_button: Button
 @export var stats_button: Button
+@export var leaderboard_btn: Button
 @export var logout_button: Button
+@export var username_label: Label
 
 func _ready() -> void:
 	ThemeManager.detect_system_theme()
@@ -20,6 +22,9 @@ func _ready() -> void:
 	if not stats_button.pressed.is_connected(_go_to_stats):
 		stats_button.pressed.connect(_go_to_stats)
 
+	if not leaderboard_btn.pressed.is_connected(_go_to_leaderboard):
+		leaderboard_btn.pressed.connect(_go_to_leaderboard)
+
 	if not logout_button.pressed.is_connected(_logout):
 		logout_button.pressed.connect(_logout)
 
@@ -30,13 +35,6 @@ func _ready() -> void:
 		Supabase.database.error.connect(_error)
 
 	show_username()
-	myfunc()
-
-func myfunc():
-	var query = SupabaseQuery.new().select(["chosen_answer"]).from("quiz_answers")
-	var task: DatabaseTask = Supabase.database.query(query)
-	await task.completed
-	print(task.data)
 
 func _go_to_quiz() -> void:
 	get_tree().change_scene_to_file("res://quiz.tscn")
@@ -46,6 +44,9 @@ func _go_to_custom_quiz_setup() -> void:
 
 func _go_to_stats() -> void:
 	get_tree().change_scene_to_file("res://stats.tscn")
+
+func _go_to_leaderboard() -> void:
+	get_tree().change_scene_to_file("res://leaderboards.tscn")
 
 func _logout() -> void:
 	logout_button.disabled = true
@@ -70,8 +71,7 @@ func _error(e) -> void:
 	print(e)
 
 func show_username() -> void:
-	var label = $CanvasLayer/Control/MarginContainer/VBoxContainer/Label
-	label.text = "Logged in as: %s" % await get_username()
+	username_label.text = "Logged in as: %s" % await get_username()
 
 func get_username() -> String:
 	if Supabase.auth.client == null:

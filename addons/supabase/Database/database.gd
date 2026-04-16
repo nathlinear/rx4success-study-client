@@ -57,7 +57,11 @@ func _process_task(task : DatabaseTask) -> void:
 
 # .............. HTTPRequest completed
 func _on_task_completed(task : DatabaseTask) -> void:
-	if task.data!=null and not task.data.is_empty():    
+	if typeof(task.data) == TYPE_FLOAT:
+		emit_signal("rpc_completed", task.data)
+		_pooled_tasks.erase(task)
+		return
+	if task.data!=null and not task.data.is_empty():
 		match task._code:
 			SupabaseQuery.REQUESTS.SELECT: emit_signal("selected", task.data)
 			SupabaseQuery.REQUESTS.INSERT: emit_signal("inserted", task.data)

@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" uid="uid://cvedmvsedky76" path="res://custom_quiz_setup.gd" id="1_hrjqg"]
 
-[node name="CustomQuizSetup" type="Node2D" unique_id=1240381807 node_paths=PackedStringArray("time_spinbox", "questions_spinbox", "start_button", "back_button")]
+[node name="CustomQuizSetup" type="Node2D" unique_id=1240381807 node_paths=PackedStringArray("time_spinbox", "questions_spinbox", "start_button", "back_button", "level_picker")]
 script = ExtResource("1_hrjqg")
 time_spinbox = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer/TimeSpinBox")
 questions_spinbox = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer/QuestionsSpinBox")
 start_button = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer/StartButton")
 back_button = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer/BackButton")
+level_picker = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer/LevelOptionButton")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=190478258]
 
@@ -20,6 +21,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Background" type="ColorRect" parent="CanvasLayer/Control" unique_id=590972534]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,6 +52,9 @@ layout_mode = 2
 layout_mode = 2
 text = "Settings"
 
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=966249097]
+layout_mode = 2
+
 [node name="TimeLabel" type="Label" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=796112110]
 layout_mode = 2
 text = "Time (mins)"
@@ -59,6 +64,7 @@ layout_mode = 2
 min_value = 1.0
 max_value = 20.0
 value = 5.0
+select_all_on_focus = true
 
 [node name="QuestionsLabel" type="Label" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=2127002561]
 layout_mode = 2
@@ -69,6 +75,7 @@ layout_mode = 2
 min_value = 10.0
 max_value = 50.0
 value = 10.0
+select_all_on_focus = true
 
 [node name="StartButton" type="Button" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=48568192]
 layout_mode = 2
@@ -77,3 +84,14 @@ text = "Start"
 [node name="BackButton" type="Button" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=1748215531]
 layout_mode = 2
 text = "Back"
+
+[node name="LevelLabel" type="Label" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=1426294277]
+layout_mode = 2
+text = "Question Level"
+
+[node name="LevelOptionButton" type="OptionButton" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=116952896]
+layout_mode = 2
+selected = 0
+item_count = 1
+popup/item_0/text = "Any"
+popup/item_0/id = 0

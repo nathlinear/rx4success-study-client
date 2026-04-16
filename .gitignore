@@ -20,3 +20,4 @@ addons/godot-vim/icon.svg.import
 addons/godot-vim/icon.svg
 addons/godot-vim/godot-vim.gd.uid
 addons/godot-vim/godot-vim.gd
+.vscode/settings.json

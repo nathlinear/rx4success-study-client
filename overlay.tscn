@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://bbttp37jv6vhk"]
+
+[ext_resource type="Script" uid="uid://bmxle450b7sn2" path="res://overlay.gd" id="1_nv86q"]
+
+[sub_resource type="Animation" id="Animation_nv86q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_42nn7"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qsnas"]
+_data = {
+&"RESET": SubResource("Animation_nv86q"),
+&"fade_in": SubResource("Animation_42nn7")
+}
+
+[node name="Overlay" type="CanvasLayer" unique_id=995545076]
+script = ExtResource("1_nv86q")
+
+[node name="Control" type="Control" parent="." unique_id=1622030958]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Control" unique_id=1389875773]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/CenterContainer" unique_id=1925636991]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Control/CenterContainer/MarginContainer" unique_id=826577294]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/CenterContainer/MarginContainer" unique_id=177494282]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/CenterContainer/MarginContainer/MarginContainer" unique_id=1528741486]
+layout_mode = 2
+text = "Hello"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/CenterContainer" unique_id=1193929579]
+libraries/ = SubResource("AnimationLibrary_qsnas")

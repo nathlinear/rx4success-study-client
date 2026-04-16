@@ -66,7 +66,7 @@ text = "My Stats"
 
 [node name="LeaderboardButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=435037764]
 layout_mode = 2
-text = "Leaderboard"
+text = "Leaderboards"
 
 [node name="LogOutButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1772817271]
 layout_mode = 2

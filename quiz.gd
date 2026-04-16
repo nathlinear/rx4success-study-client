@@ -14,17 +14,25 @@ extends Node2D
 @export var question_tracker_label: Label
 @export var time_label: Label
 
+@export var level_label: Label
+
 var buttons: Array[Button] = []
 
-var correct = ""
+var saved_correct = ""
 var saved_choices: Array[String] = []
-var time_taken: float = 0.0
+var question_time_taken: float = 0.0
 var questions_answered: int = 0
+var saved_question_id: int = 0
+
+var max_questions: int = -1
+var time_left: float = -1.0
+
+var question_history: Array[QuestionData] = []
 
 func _ready() -> void:
 	ThemeManager.detect_system_theme()
 	ThemeManager.apply_theme($CanvasLayer/Control)
-
+	
 	quit_button.pressed.connect(_change_scene)
 	next_button.pressed.connect(_gen_question)
 
@@ -40,18 +48,29 @@ func _ready() -> void:
 	if not Supabase.database.error.is_connected(_error):
 		Supabase.database.error.connect(_error)
 
-	questions_answered = 0
+	if CustomQuizSettings.use_settings:
+		max_questions = CustomQuizSettings.question_count
+		time_left = float(CustomQuizSettings.time_minutes * 60)
+
 	_update_question_tracker()
 	_gen_question()
 
 func _gen_question() -> void:
-	var task = Supabase.database.Rpc("get_question")
+	var task: BaseTask
+	if CustomQuizSettings.use_settings and CustomQuizSettings.question_level != -1:
+		task = Supabase.database.Rpc("get_question", {"p_level": CustomQuizSettings.question_level})
+	else:
+		task = Supabase.database.Rpc("get_question")
 	await task.completed
 
 	var data = task.data[0]
-	question_label.text = "Level %d - %s" % [int(data["Level"]), data["Question"]]
 
-	correct = data["Answer"]
+	saved_question_id = data["id"]
+	level_label.text = "Lv %d" % int(data["Level"])
+
+	question_label.text = data["Question"]
+
+	saved_correct = data["Answer"]
 
 	var choices: Array[String] = []
 	for choice in data["Choices"].split(";"):
@@ -65,51 +84,99 @@ func _gen_question() -> void:
 
 	next_button.disabled = true
 	result_label.text = ""
-	time_taken = 0.0
+	question_time_taken = 0.0
 	saved_choices = choices.duplicate()
 
 func _process(delta: float) -> void:
-	time_taken += delta
 
-	var minutes = int(time_taken / 60)
-	var seconds = int(time_taken) % 60
+	# Only count down time if a question is active
+	if next_button.disabled:
+		question_time_taken += delta
+		time_left -= delta
 
-	time_label.text = "Time: %02d:%02d" % [minutes, seconds]
+	# If using custom quiz settings, check if time has run out
+	if time_left <= 0.0 and CustomQuizSettings.use_settings:
+		time_left = 0.0
+		_change_scene()
+		return
+
+	# Update the time label based on whether we're using custom quiz settings or not
+	if CustomQuizSettings.use_settings:
+		var minutes = int(time_left / 60)
+		var seconds = int(time_left) % 60
+		time_label.text = "Time Remaining: %02d:%02d" % [minutes, seconds]
+	else:
+		var minutes = int(question_time_taken / 60)
+		var seconds = int(question_time_taken) % 60
+		time_label.text = "Question Time: %02d:%02d" % [minutes, seconds]
 
 func _change_scene() -> void:
+	if questions_answered == 0:
+		get_tree().change_scene_to_file("res://mainMenu.tscn")
+		return
+
+	Global.question_history = question_history
+	CustomQuizSettings.use_settings = false
 	get_tree().change_scene_to_file("res://stats.tscn")
+	return
 
-func choice_made(chosen: Button) -> void:
-	if chosen.text == correct:
-		result_label.text = "Correct\n"
-	else:
-		result_label.text = "Incorrect\n"
 
-	result_label.text += "The correct answer was %s" % correct
+func choice_made(chosen_button: Button) -> void:
+
+	var q: QuestionData = QuestionData.new(
+		question_label.text,
+		saved_choices,
+		saved_correct,
+		chosen_button.text,
+		question_time_taken
+	)
 
 	for button in buttons:
 		button.disabled = true
 
+	if q.was_correct:
+		result_label.text = "Correct\n"
+		Overlay.show_popup("Correct!\n+10")
+	else:
+		result_label.text = "Incorrect\n"
+		Overlay.show_popup("Incorrect\n-5")
+
+	result_label.text += "The correct answer was %s" % q.correct_answer
+
 	questions_answered += 1
 	_update_question_tracker()
 
-	insert_answer(chosen.text, correct, saved_choices, time_taken)
+	insert_answer(q)
+	question_history.append(q)
+
 	next_button.disabled = false
 
 func _update_question_tracker() -> void:
-	question_tracker_label.text = "Answered: %d" % questions_answered
+	if CustomQuizSettings.use_settings:
 
-func insert_answer(chosen: String, correct_answer: String, choices: Array[String], time: float) -> void:
+		question_tracker_label.text = "Questions Remaining: %d" % (max_questions - questions_answered)
+
+		if questions_answered == max_questions:
+			_change_scene()
+
+	else:
+		question_tracker_label.text = "Questions Answered: %d" % questions_answered
+
+
+
+func insert_answer(question: QuestionData) -> void:
 	var query = (
 		SupabaseQuery.new()
 		.from("quiz_answers")
 		.insert(
 			[{
-				"chosen_answer": chosen,
-				"was_correct": chosen == correct_answer,
-				"question_choices": choices,
-				"correct_answer": correct_answer,
-				"time_taken": time
+				"question_prompt": question.question_prompt,
+				"chosen_answer": question.chosen_answer,
+				"was_correct": question.was_correct,
+				"question_choices": question.question_choices,
+				"correct_answer": question.correct_answer,
+				"time_taken": question.time_taken,
+				"question_id": saved_question_id
 			}]
 		)
 	)
@@ -117,6 +184,8 @@ func insert_answer(chosen: String, correct_answer: String, choices: Array[String
 	await task.completed
 	print(task.data)
 	print(task.error)
+
+
 
 func _error(err):
 	result_label.text = str(err)

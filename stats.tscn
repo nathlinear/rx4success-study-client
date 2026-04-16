@@ -3,14 +3,16 @@
 [ext_resource type="Script" uid="uid://c3pr7chqirbof" path="res://stats.gd" id="1_qkx3n"]
 [ext_resource type="Script" uid="uid://dfv2dgpxpmvva" path="res://quit_button.gd" id="2_74t8q"]
 
-[node name="Stats" type="Node2D" unique_id=963027096 node_paths=PackedStringArray("label_total_q", "label_correct_q", "label_acc", "label_total_t", "label_avg_t", "label_score")]
+[node name="Stats" type="Node2D" unique_id=963027096 node_paths=PackedStringArray("label_total_q", "label_correct_q", "label_acc", "label_total_t", "label_avg_t", "xp_num_label", "label_history", "xp_text_label")]
 script = ExtResource("1_qkx3n")
-label_total_q = NodePath("CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxRight/TotalQuestions")
-label_correct_q = NodePath("CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxRight/CorrectQuestions")
-label_acc = NodePath("CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxRight/Accuracy")
-label_total_t = NodePath("CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxRight/TotalTime")
-label_avg_t = NodePath("CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxRight/AverageTime")
-label_score = NodePath("CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxRight/Score")
+label_total_q = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxRight/TotalQuestions")
+label_correct_q = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxRight/CorrectQuestions")
+label_acc = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxRight/Accuracy")
+label_total_t = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxRight/TotalTime")
+label_avg_t = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxRight/AverageTime")
+xp_num_label = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxRight/XPNum")
+label_history = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/ScrollContainer/History")
+xp_text_label = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxLeft/XPLabel")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1962310120]
 
@@ -40,87 +42,102 @@ offset_top = 116.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="YourStats" type="Label" parent="CanvasLayer/Control/MarginContainer" unique_id=150439413]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer" unique_id=851030114]
+layout_mode = 2
+theme_override_constants/separation = 70
+
+[node name="YourStats" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=150439413]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "Your stats"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer" unique_id=1650176972]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1650176972]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 20
 
-[node name="VBoxLeft" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/HBoxContainer" unique_id=118155405]
+[node name="VBoxLeft" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer" unique_id=118155405]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 
-[node name="TotalQuestions" type="Label" parent="CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxLeft" unique_id=265629740]
+[node name="TotalQuestions" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxLeft" unique_id=265629740]
 layout_mode = 2
 text = "Total Answered:"
 
-[node name="CorrectQuestions" type="Label" parent="CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxLeft" unique_id=1447568464]
+[node name="CorrectQuestions" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxLeft" unique_id=1447568464]
 layout_mode = 2
 text = "Total Correct:"
 
-[node name="Accuracy" type="Label" parent="CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxLeft" unique_id=273633041]
+[node name="Accuracy" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxLeft" unique_id=273633041]
 layout_mode = 2
 text = "Question Accuracy:"
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxLeft" unique_id=36917726]
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxLeft" unique_id=1046272394]
 layout_mode = 2
 
-[node name="TotalTime" type="Label" parent="CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxLeft" unique_id=1681922521]
+[node name="TotalTime" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxLeft" unique_id=1681922521]
 layout_mode = 2
 text = "Total Quiz Time:"
 
-[node name="AverageTime" type="Label" parent="CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxLeft" unique_id=1650486243]
+[node name="AverageTime" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxLeft" unique_id=1650486243]
 layout_mode = 2
 text = "Average Time Per Q:"
 
-[node name="Label2" type="Label" parent="CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxLeft" unique_id=1878126938]
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxLeft" unique_id=1421220018]
 layout_mode = 2
 
-[node name="Score" type="Label" parent="CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxLeft" unique_id=234520262]
+[node name="XPLabel" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxLeft" unique_id=234520262]
 layout_mode = 2
-text = "Your Score:"
+text = "Total XP:"
 
-[node name="VBoxRight" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/HBoxContainer" unique_id=2092812293]
+[node name="VBoxRight" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2092812293]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TotalQuestions" type="Label" parent="CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxRight" unique_id=752261200]
+[node name="TotalQuestions" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxRight" unique_id=752261200]
 layout_mode = 2
 text = "Loading..."
 
-[node name="CorrectQuestions" type="Label" parent="CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxRight" unique_id=1336681574]
+[node name="CorrectQuestions" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxRight" unique_id=1336681574]
 layout_mode = 2
 text = "Loading..."
 
-[node name="Accuracy" type="Label" parent="CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxRight" unique_id=1053438535]
+[node name="Accuracy" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxRight" unique_id=1053438535]
 layout_mode = 2
 text = "Loading..."
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxRight" unique_id=106962634]
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxRight" unique_id=507316096]
 layout_mode = 2
 
-[node name="TotalTime" type="Label" parent="CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxRight" unique_id=120957600]
+[node name="TotalTime" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxRight" unique_id=120957600]
 layout_mode = 2
 text = "Loading..."
 
-[node name="AverageTime" type="Label" parent="CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxRight" unique_id=1528898540]
+[node name="AverageTime" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxRight" unique_id=1528898540]
 layout_mode = 2
 text = "Loading..."
 
-[node name="Label2" type="Label" parent="CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxRight" unique_id=690456302]
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxRight" unique_id=1127318587]
 layout_mode = 2
 
-[node name="Score" type="Label" parent="CanvasLayer/Control/MarginContainer/HBoxContainer/VBoxRight" unique_id=85660354]
+[node name="XPNum" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxRight" unique_id=85660354]
 layout_mode = 2
 text = "Loading..."
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1405828281]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+
+[node name="History" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/ScrollContainer" unique_id=1634519040]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+autowrap_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control" unique_id=1845950873]
 layout_mode = 1

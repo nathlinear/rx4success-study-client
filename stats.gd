@@ -6,7 +6,9 @@ class_name Statistics
 @export var label_acc: Label
 @export var label_total_t: Label
 @export var label_avg_t: Label
-@export var label_score: Label
+@export var xp_num_label: Label
+@export var label_history: Label
+@export var xp_text_label: Label
 
 func _ready() -> void:
 	ThemeManager.detect_system_theme()
@@ -15,33 +17,72 @@ func _ready() -> void:
 	if Supabase.auth.client == null:
 		return
 	
-	get_stats()
+	if Global.question_history != []:
 
-func get_stats() -> void:
-	var q = SupabaseQuery.new().select(["was_correct", "time_taken"]).from("quiz_answers")
+		calc_stats(Global.question_history)
+		# Global.question_history = []
+	else:
+		var questions = await get_supabase_questions()
+		calc_stats(questions)
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed:
+		if event.as_text() == "R":
+			print("Refreshing stats...")
+			calc_stats(Global.question_history)
+		if event.as_text() == "S":
+			print("Refreshing stats...")
+			calc_stats(await get_supabase_questions())
+
+func get_supabase_questions() -> Array[QuestionData]:
+	var q = SupabaseQuery.new().select(["*"]).from("quiz_answers").order("created_at", 1)
 	var task: DatabaseTask = Supabase.database.query(q)
 	await task.completed
 	
-	# task.data returns an Array of values, of which these values always seem
-	# to be of type Dictionary, but the value type of task.data is just Array, 
-	# and Godot throws an error if we try to directly assign the task.data to a
-	# variable of type Array[Dictionary]. Therefore, check every item to make
-	# sure it is a dictionary it safely and print if the task ever returns an 
-	# Array of things that are not Dictionaries.
-	var data: Array[Dictionary]
-	for item in task.data:
-		if item is Dictionary:
-			data.append(item)
-		else:
-			assert(false, "Select task returned Array of values that are not Dictionaries!")
+	var supaData: Array = task.data
+	var questions: Array[QuestionData]
+
+	for dictionary in supaData:
+
+		questions.append(QuestionData.new(
+			dictionary["question_prompt"] if dictionary["question_prompt"] != null else "",
+			dictionary["question_choices"],
+			dictionary["correct_answer"],
+			dictionary["chosen_answer"],
+			dictionary["time_taken"]
+		))
+
 	
-	var total_q: int = len(data)
+	print(questions)
+	return questions
+
+static func calc_score(accuracy_percent: float, average_time: float, total_q: int) -> float:
+	return accuracy_percent 
+
+func calc_stats(questions: Array[QuestionData]) -> void:
+
+	var total_q: int = len(questions)
 	var correct_q: int = 0
 	var total_t: float = 0.0
-	for dict in data:
-		if dict["was_correct"]:
+	var score: float = 0.0
+	label_history.text = ""
+	for q: QuestionData in questions:
+		if q.was_correct:
 			correct_q += 1
-		total_t += dict["time_taken"]
+			# 10 points per correct answer, with a penalty of 0.5 points per
+			# second taken (18 sec to 1 points). Rewards early correct answers
+			score += max(10.0 - (q.time_taken * 0.5), 1.0)
+			print(max(10.0 - (q.time_taken * 0.5), 1.0))
+		else:
+			# 10 point penalty for incorrect answers, with a smaller penalty of
+			# 0.1 points per second taken (50 sec to 5 points). Punishes early
+			# incorrect answers more harshly
+			score -= max(10.0 - (q.time_taken * 0.1), 5.0)
+			print(-max(10.0 - (q.time_taken * 0.1), 5.0))
+		total_t += q.time_taken
+
+		var string: String = "Q: " + q.question_prompt + "\n" + "Your answer: " + q.chosen_answer + "\n" + "Correct answer: " + q.correct_answer + "\n" + "Time taken: " + String.num(q.time_taken, 2) + "s\n" + "\n\n"
+		label_history.text += string
 	
 	var acc_q: float = 0.0
 	var avg_t: float = 0.0
@@ -53,7 +94,7 @@ func get_stats() -> void:
 	print(acc_q)
 	print(avg_t)
 	
-	var score = calc_score(acc_q, avg_t, total_q)
+	# var score = calc_score(acc_q, avg_t, total_q)
 	
 	print(score)
 	
@@ -62,15 +103,24 @@ func get_stats() -> void:
 	label_acc.text = String.num(acc_q, 2) + "%"
 	label_avg_t.text = String.num(avg_t, 2) + "s"
 	label_total_t.text = String.num(total_t, 2) + "s"
-	if is_nan(score):
-		label_score.text = "0.0"
+
+	var task = Supabase.database.Rpc("calculate_quiz_score")
+	await task.completed
+
+	score = task.data
+	
+	xp_num_label.text = String.num(score, 0)
+
+	# If the user got to stats not from main menu, show "Quiz XP" instead of "Overall XP"
+	if CustomQuizSettings.use_settings or Global.question_history != []:
+		xp_text_label.text = "Quiz XP"
 	else:
-		label_score.text = String.num(score, 2)
+		xp_text_label.text = "Overall XP"
 
-static func calc_score(accuracy_percent: float, average_time: float, total_q: int):
-	var score = accuracy_percent - (1 * log(average_time))
-	score = score * v(total_q, 10) # reduce score of low total questions answered
-	return score
+# static func calc_score(accuracy_percent: float, average_time: float, total_q: int):
+# 	var score = accuracy_percent - (1 * log(average_time))
+# 	score = score * v(total_q, 10) # reduce score of low total questions answered
+# 	return score
 
-static func v(num: float, k: int):
-	return min(num / (num + k), 1.0)
+# static func v(num: float, k: int):
+# 	return min(num / (num + k), 1.0)

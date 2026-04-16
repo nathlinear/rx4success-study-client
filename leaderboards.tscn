@@ -5,9 +5,11 @@
 [ext_resource type="Script" uid="uid://dfv2dgpxpmvva" path="res://quit_button.gd" id="2_qhm5l"]
 [ext_resource type="Script" uid="uid://cdsmk373oxxr1" path="res://scroll_container.gd" id="2_tibs2"]
 
-[node name="Leaderboards" type="Node2D" unique_id=687210525 node_paths=PackedStringArray("grid")]
+[node name="Leaderboards" type="Node2D" unique_id=687210525 node_paths=PackedStringArray("grid", "statOptions", "timeOptions")]
 script = ExtResource("1_pf0yp")
-grid = NodePath("CanvasLayer/Control/MarginContainer/ScrollContainer/GridContainer")
+grid = NodePath("CanvasLayer/Control/Center/VBoxContainer/ScrollContainer/GridContainer")
+statOptions = NodePath("CanvasLayer/Control/Center/VBoxContainer/GridContainer/StatOption")
+timeOptions = NodePath("CanvasLayer/Control/Center/VBoxContainer/GridContainer/TimeOption")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=109725046]
 
@@ -28,20 +30,67 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.48178947, 0.48178947, 0.48178947, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control" unique_id=884485875]
+[node name="Center" type="MarginContainer" parent="CanvasLayer/Control" unique_id=884485875]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 207.0
+offset_top = 73.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/MarginContainer" unique_id=1887318892]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Center" unique_id=1557729461]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Center/VBoxContainer" unique_id=1802164461]
+layout_mode = 2
+text = "Leaderboards"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control/Center/VBoxContainer" unique_id=621756079]
+layout_mode = 2
+columns = 2
+
+[node name="StatOption" type="OptionButton" parent="CanvasLayer/Control/Center/VBoxContainer/GridContainer" unique_id=1075092610]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+allow_reselect = true
+item_count = 5
+popup/item_0/text = "Total Correct"
+popup/item_0/id = 0
+popup/item_1/text = "Total Answered"
+popup/item_1/id = 1
+popup/item_2/text = "Accuracy"
+popup/item_2/id = 2
+popup/item_3/text = "Average Time"
+popup/item_3/id = 3
+popup/item_4/text = "Experience"
+popup/item_4/id = 4
+
+[node name="TimeOption" type="OptionButton" parent="CanvasLayer/Control/Center/VBoxContainer/GridContainer" unique_id=309115151]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+selected = 0
+allow_reselect = true
+item_count = 3
+popup/item_0/text = "All time"
+popup/item_0/id = 0
+popup/item_1/text = "Last 30 Days"
+popup/item_1/id = 1
+popup/item_2/text = "Last 7 Days"
+popup/item_2/id = 2
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Control/Center/VBoxContainer" unique_id=1242778470]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/Center/VBoxContainer" unique_id=1887318892]
+layout_mode = 2
+size_flags_vertical = 3
 script = ExtResource("2_tibs2")
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control/MarginContainer/ScrollContainer" unique_id=1048630428]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control/Center/VBoxContainer/ScrollContainer" unique_id=1048630428]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -50,29 +99,18 @@ theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control" unique_id=1912878593]
+[node name="TopRight" type="MarginContainer" parent="CanvasLayer/Control" unique_id=1912878593]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -313.0
-offset_bottom = 200.0
+offset_left = -352.0
+offset_bottom = 153.0
 grow_horizontal = 0
 
-[node name="QuitButton" type="Button" parent="CanvasLayer/Control/MarginContainer2" unique_id=1784615780]
+[node name="QuitButton" type="Button" parent="CanvasLayer/Control/TopRight" unique_id=1784615780]
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_horizontal = 8
+size_flags_vertical = 0
 text = "Return to Menu"
 script = ExtResource("2_qhm5l")
-
-[node name="Label" type="Label" parent="CanvasLayer/Control" unique_id=1802164461]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -107.0
-offset_top = 207.0
-offset_right = 107.0
-offset_bottom = 252.0
-grow_horizontal = 2
-text = "Leaderboards"

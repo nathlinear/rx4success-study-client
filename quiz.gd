@@ -136,10 +136,10 @@ func choice_made(chosen_button: Button) -> void:
 
 	if q.was_correct:
 		result_label.text = "Correct\n"
-		Overlay.show_popup("Correct!\n+10")
+		Overlay.show_popup("Correct!\n+10 Points")
 	else:
 		result_label.text = "Incorrect\n"
-		Overlay.show_popup("Incorrect\n-5")
+		Overlay.show_popup("Incorrect\n-5 Points")
 
 	result_label.text += "The correct answer was %s" % q.correct_answer
 

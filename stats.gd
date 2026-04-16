@@ -124,6 +124,6 @@ func calc_stats(questions: Array[QuestionData]) -> void:
 
 	# If the user got to stats not from main menu, show "Quiz XP" instead of "Overall XP"
 	if CustomQuizSettings.use_settings or Global.question_history != []:
-		xp_text_label.text = "Quiz XP"
+		xp_text_label.text = "Quiz Points"
 	else:
-		xp_text_label.text = "Overall XP"
+		xp_text_label.text = "Total Points"

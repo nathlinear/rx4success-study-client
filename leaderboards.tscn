@@ -56,7 +56,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 selected = 0
 allow_reselect = true
-item_count = 5
+item_count = 6
 popup/item_0/text = "Total Correct"
 popup/item_0/id = 0
 popup/item_1/text = "Total Answered"
@@ -65,8 +65,10 @@ popup/item_2/text = "Accuracy"
 popup/item_2/id = 2
 popup/item_3/text = "Average Time"
 popup/item_3/id = 3
-popup/item_4/text = "Experience"
-popup/item_4/id = 4
+popup/item_4/text = "Total Time"
+popup/item_4/id = 5
+popup/item_5/text = "Score"
+popup/item_5/id = 4
 
 [node name="TimeOption" type="OptionButton" parent="CanvasLayer/Control/Center/VBoxContainer/GridContainer" unique_id=309115151]
 layout_mode = 2

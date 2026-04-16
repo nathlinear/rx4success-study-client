@@ -4,8 +4,8 @@
 
 [node name="CustomQuizSetup" type="Node2D" unique_id=1240381807 node_paths=PackedStringArray("time_spinbox", "questions_spinbox", "start_button", "back_button", "level_picker")]
 script = ExtResource("1_hrjqg")
-time_spinbox = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer/TimeSpinBox")
-questions_spinbox = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer/QuestionsSpinBox")
+time_input = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer/time_input")
+questions_input = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer/questions_input")
 start_button = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer/StartButton")
 back_button = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer/BackButton")
 level_picker = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer/LevelOptionButton")
@@ -60,6 +60,7 @@ layout_mode = 2
 text = "Time (mins)"
 
 [node name="TimeSpinBox" type="SpinBox" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=2034506366]
+visible = false
 layout_mode = 2
 min_value = 1.0
 max_value = 20.0
@@ -71,6 +72,7 @@ layout_mode = 2
 text = "Questions"
 
 [node name="QuestionsSpinBox" type="SpinBox" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=1387812466]
+visible = false
 layout_mode = 2
 min_value = 10.0
 max_value = 50.0

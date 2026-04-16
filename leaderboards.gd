@@ -98,36 +98,14 @@ func update_leaderboard() -> void:
 					average_time = 0.0
 				user_stat_array.append({"username": data_dict["username"], "statistic": average_time})
 			4:
-				# Experience points
+				# Total time
+				user_stat_array.append({"username": data_dict["username"], "statistic": data_dict["total_time"]})
+			5:
+				# Score
 				var score = data_dict["score"]
 				user_stat_array.append({"username": data_dict["username"], "statistic": score})
 	
 	build_listings(user_stat_array)
-	
-	# Sort the user_stat_array by statistic in descending order
-	# var count = 0
-	# while user_stat_array.size() > 0:
-	# 	var max_stat: float = -999999999999.0
-	# 	var min_stat: float = 999999999999.0
-	# 	var max_index: int = -1
-	# 	var min_index: int = -1
-
-	# 	for i in range(user_stat_array.size()):
-	# 		if user_stat_array[i]["statistic"] > max_stat:
-	# 			max_stat = user_stat_array[i]["statistic"]
-	# 			max_index = i
-	# 		if user_stat_array[i]["statistic"] < min_stat:
-	# 			min_stat = user_stat_array[i]["statistic"]
-	# 			min_index = i
-
-	# 	if max_index != -1:
-	# 		if statOptions.selected == 3:
-	# 			# For average time, lower is better
-	# 			create_listing(user_stat_array[min_index]["username"], user_stat_array[min_index]["statistic"])
-	# 			user_stat_array.remove_at(min_index)
-	# 		else:
-	# 			create_listing(user_stat_array[max_index]["username"], user_stat_array[max_index]["statistic"])
-	# 			user_stat_array.remove_at(max_index)
 
 func build_listings(user_stat_array: Array) -> void:
 	# Defensive copy

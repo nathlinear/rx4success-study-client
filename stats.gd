@@ -9,6 +9,7 @@ class_name Statistics
 @export var xp_num_label: Label
 @export var label_history: Label
 @export var xp_text_label: Label
+@export var quit_button: Button
 
 func _ready() -> void:
 	ThemeManager.detect_system_theme()
@@ -24,6 +25,8 @@ func _ready() -> void:
 	else:
 		var questions = await get_supabase_questions()
 		calc_stats(questions)
+	
+	quit_button.pressed.connect(_exit)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
@@ -33,6 +36,11 @@ func _input(event: InputEvent) -> void:
 		if event.as_text() == "S":
 			print("Refreshing stats...")
 			calc_stats(await get_supabase_questions())
+
+func _exit() -> void:
+	Global.question_history = []
+	Global.use_question_history = false
+	get_tree().change_scene_to_file("res://mainMenu.tscn")
 
 func get_supabase_questions() -> Array[QuestionData]:
 	var q = SupabaseQuery.new().select(["*"]).from("quiz_answers").order("created_at", 1)
@@ -71,14 +79,16 @@ func calc_stats(questions: Array[QuestionData]) -> void:
 			correct_q += 1
 			# 10 points per correct answer, with a penalty of 0.5 points per
 			# second taken (18 sec to 1 points). Rewards early correct answers
-			score += max(10.0 - (q.time_taken * 0.5), 1.0)
-			print(max(10.0 - (q.time_taken * 0.5), 1.0))
+			# score += max(10.0 - (q.time_taken * 0.5), 1.0)
+			# print(max(10.0 - (q.time_taken * 0.5), 1.0))
+			score += 10
 		else:
 			# 10 point penalty for incorrect answers, with a smaller penalty of
 			# 0.1 points per second taken (50 sec to 5 points). Punishes early
 			# incorrect answers more harshly
-			score -= max(10.0 - (q.time_taken * 0.1), 5.0)
-			print(-max(10.0 - (q.time_taken * 0.1), 5.0))
+			# score -= max(10.0 - (q.time_taken * 0.1), 5.0)
+			# print(-max(10.0 - (q.time_taken * 0.1), 5.0))
+			score -= 5
 		total_t += q.time_taken
 
 		var string: String = "Q: " + q.question_prompt + "\n" + "Your answer: " + q.chosen_answer + "\n" + "Correct answer: " + q.correct_answer + "\n" + "Time taken: " + String.num(q.time_taken, 2) + "s\n" + "\n\n"
@@ -104,10 +114,11 @@ func calc_stats(questions: Array[QuestionData]) -> void:
 	label_avg_t.text = String.num(avg_t, 2) + "s"
 	label_total_t.text = String.num(total_t, 2) + "s"
 
-	var task = Supabase.database.Rpc("calculate_quiz_score")
-	await task.completed
+	if Global.question_history == []:
+		var task = Supabase.database.Rpc("calculate_quiz_score")
+		await task.completed
 
-	score = task.data
+		score = task.data
 	
 	xp_num_label.text = String.num(score, 0)
 
@@ -116,11 +127,3 @@ func calc_stats(questions: Array[QuestionData]) -> void:
 		xp_text_label.text = "Quiz XP"
 	else:
 		xp_text_label.text = "Overall XP"
-
-# static func calc_score(accuracy_percent: float, average_time: float, total_q: int):
-# 	var score = accuracy_percent - (1 * log(average_time))
-# 	score = score * v(total_q, 10) # reduce score of low total questions answered
-# 	return score
-
-# static func v(num: float, k: int):
-# 	return min(num / (num + k), 1.0)

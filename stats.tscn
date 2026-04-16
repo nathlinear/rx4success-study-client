@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://0wewlqyywxje"]
 
 [ext_resource type="Script" uid="uid://c3pr7chqirbof" path="res://stats.gd" id="1_qkx3n"]
-[ext_resource type="Script" uid="uid://dfv2dgpxpmvva" path="res://quit_button.gd" id="2_74t8q"]
 
-[node name="Stats" type="Node2D" unique_id=963027096 node_paths=PackedStringArray("label_total_q", "label_correct_q", "label_acc", "label_total_t", "label_avg_t", "xp_num_label", "label_history", "xp_text_label")]
+[node name="Stats" type="Node2D" unique_id=963027096 node_paths=PackedStringArray("label_total_q", "label_correct_q", "label_acc", "label_total_t", "label_avg_t", "xp_num_label", "label_history", "xp_text_label", "quit_button")]
 script = ExtResource("1_qkx3n")
 label_total_q = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxRight/TotalQuestions")
 label_correct_q = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxRight/CorrectQuestions")
@@ -13,6 +12,7 @@ label_avg_t = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxCo
 xp_num_label = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxRight/XPNum")
 label_history = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/ScrollContainer/History")
 xp_text_label = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer/VBoxLeft/XPLabel")
+quit_button = NodePath("CanvasLayer/Control/MarginContainer2/QuitButton")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1962310120]
 
@@ -152,4 +152,3 @@ grow_horizontal = 0
 layout_mode = 2
 size_flags_vertical = 4
 text = "Quit to Menu"
-script = ExtResource("2_74t8q")

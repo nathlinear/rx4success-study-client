@@ -4,11 +4,11 @@
 
 [node name="CustomQuizSetup" type="Node2D" unique_id=1240381807 node_paths=PackedStringArray("time_input", "questions_input", "start_button", "back_button", "level_picker")]
 script = ExtResource("1_hrjqg")
-time_input = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer/time_input")
-questions_input = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer/questions_input")
-start_button = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer/StartButton")
-back_button = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer/BackButton")
-level_picker = NodePath("CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer/LevelOptionButton")
+time_input = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/time_input")
+questions_input = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/questions_input")
+start_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/StartButton")
+back_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/BackButton")
+level_picker = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/LevelOptionButton")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=190478258]
 
@@ -34,56 +34,63 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control" unique_id=760725785]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control" unique_id=185071940]
+custom_minimum_size = Vector2(300, 500)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 40
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/CenterContainer" unique_id=185071940]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer" unique_id=1011724988]
 layout_mode = 2
+theme_override_constants/separation = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer/MarginContainer" unique_id=1011724988]
+[node name="TitleLabel" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=659556512]
 layout_mode = 2
-
-[node name="TitleLabel" type="Label" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=659556512]
-layout_mode = 2
+theme_override_font_sizes/font_size = 50
 text = "Settings"
+horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=966249097]
-layout_mode = 2
-
-[node name="TimeLabel" type="Label" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=796112110]
+[node name="TimeLabel" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=796112110]
 layout_mode = 2
 text = "Time (mins)"
 
-[node name="time_input" type="LineEdit" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=74600611]
+[node name="time_input" type="LineEdit" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=74600611]
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 
-[node name="QuestionsLabel" type="Label" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=2127002561]
+[node name="QuestionsLabel" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=2127002561]
 layout_mode = 2
 text = "Questions"
 
-[node name="questions_input" type="LineEdit" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=845098102]
+[node name="questions_input" type="LineEdit" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=845098102]
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 
-[node name="StartButton" type="Button" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=48568192]
-layout_mode = 2
-text = "Start"
-
-[node name="BackButton" type="Button" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=1748215531]
-layout_mode = 2
-text = "Back"
-
-[node name="LevelLabel" type="Label" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=1426294277]
+[node name="LevelLabel" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1426294277]
 layout_mode = 2
 text = "Question Level"
 
-[node name="LevelOptionButton" type="OptionButton" parent="CanvasLayer/Control/CenterContainer/MarginContainer/VBoxContainer" unique_id=116952896]
+[node name="LevelOptionButton" type="OptionButton" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=116952896]
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 selected = 0
 item_count = 1
 popup/item_0/text = "Any"
 popup/item_0/id = 0
+
+[node name="StartButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=48568192]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+text = "Start"
+
+[node name="BackButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1748215531]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+text = "Back"

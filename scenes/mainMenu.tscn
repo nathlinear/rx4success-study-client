@@ -78,7 +78,7 @@ text = "Leaderboards"
 [node name="StatsButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=884080852]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "Stats"
+text = "My Stats"
 
 [node name="AccountButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1557696210]
 custom_minimum_size = Vector2(0, 100)

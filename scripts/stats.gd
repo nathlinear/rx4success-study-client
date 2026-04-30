@@ -75,6 +75,8 @@ func calc_stats(questions: Array[QuestionData]) -> void:
 
 		var string: String = "Q: " + q.question_prompt + "\n" + "Your answer: " + q.chosen_answer + "\n" + "Correct answer: " + q.correct_answer + "\n" + "Time taken: " + String.num(q.time_taken, 2) + "s\n" + "\n\n"
 		label_history.text += string
+		if q.was_correct:
+			correct_q += 1
 	
 	var acc_q: float = 0.0
 	var avg_t: float = 0.0

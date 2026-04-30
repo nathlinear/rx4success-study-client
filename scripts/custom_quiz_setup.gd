@@ -18,10 +18,6 @@ func _ready() -> void:
 	time_input.text = ""
 	questions_input.text = ""
 
-	# Optional placeholder text
-	time_input.placeholder_text = "1 - 20"
-	questions_input.placeholder_text = "10 - 50"
-
 	# Mobile keyboard hint
 	time_input.virtual_keyboard_type = LineEdit.KEYBOARD_TYPE_NUMBER
 	questions_input.virtual_keyboard_type = LineEdit.KEYBOARD_TYPE_NUMBER
@@ -73,18 +69,18 @@ func _start_custom_quiz() -> void:
 
 	# If blank, use defaults
 	if time_input.text.strip_edges() == "":
-		time_val = 5
+		time_val = 120
 	else:
 		time_val = int(time_input.text)
 
 	if questions_input.text.strip_edges() == "":
-		question_val = 10
+		question_val = 90
 	else:
 		question_val = int(questions_input.text)
 
 	# Clamp to allowed range
-	time_val = clamp(time_val, 1, 20)
-	question_val = clamp(question_val, 10, 50)
+	time_val = clamp(time_val, 1, 300)
+	question_val = clamp(question_val, 1, 500)
 
 	CustomQuizSettings.time_minutes = time_val
 	CustomQuizSettings.question_count = question_val

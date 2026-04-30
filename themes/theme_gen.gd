@@ -104,6 +104,7 @@ func define_theme():
 		focus = line_edit_style,
 		normal = line_edit_style,
 		font_color = text_font_color,
+		font_placeholder_color = alpha(text_font_color, 0.5),
 		caret_color = text_font_color
 	})
 	

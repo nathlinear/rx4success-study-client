@@ -70,6 +70,7 @@ Button/styles/pressed = SubResource("StyleBoxFlat_3adve")
 Label/colors/font_color = Color(1, 1, 1, 1)
 LineEdit/colors/caret_color = Color(1, 1, 1, 1)
 LineEdit/colors/font_color = Color(1, 1, 1, 1)
+LineEdit/colors/font_placeholder_color = Color(1, 1, 1, 0.5)
 LineEdit/styles/focus = SubResource("StyleBoxFlat_ojq6m")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_ixtsc")
 MarginContainer/constants/margin_bottom = 20

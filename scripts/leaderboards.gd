@@ -3,6 +3,7 @@ extends Node2D
 @export var grid: GridContainer
 @export var statOptions: OptionButton
 @export var timeOptions: OptionButton
+@export var scoreEquationLabel: Label
 
 func _ready() -> void:
 	
@@ -61,6 +62,7 @@ func update_leaderboard() -> void:
 	# username: statistic
 	var user_stat_array: Array[Dictionary] = []
 
+	scoreEquationLabel.visible = false
 	for data_dict in task.data:
 		match statOptions.selected:
 			0:
@@ -98,6 +100,7 @@ func update_leaderboard() -> void:
 				# Score
 				var score = data_dict["score"]
 				user_stat_array.append({"username": data_dict["username"], "statistic": score})
+				scoreEquationLabel.visible = true
 	
 	build_listings(user_stat_array)
 

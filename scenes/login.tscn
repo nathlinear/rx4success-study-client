@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dlv1kcjdcp3a1"]
 
-[ext_resource type="Script" uid="uid://d55js8ke0fsl" path="res://login.gd" id="1_xlo4h"]
+[ext_resource type="Script" uid="uid://d55js8ke0fsl" path="res://scripts/login.gd" id="1_xlo4h"]
 [ext_resource type="Texture2D" uid="uid://cui64y8cacjun" path="res://Pharm-Background.jpg" id="2_3n56f"]
 [ext_resource type="Texture2D" uid="uid://d3lmguy4la77n" path="res://checked.png" id="3_6hqeh"]
-[ext_resource type="PackedScene" uid="uid://dw6h2bsgwd23j" path="res://rx4success.tscn" id="3_xlo4h"]
+[ext_resource type="PackedScene" uid="uid://dw6h2bsgwd23j" path="res://scenes/rx4success.tscn" id="3_xlo4h"]
 [ext_resource type="Texture2D" uid="uid://byerr8w8nrf5g" path="res://unchecked.png" id="4_edd8a"]
 
 [node name="Login" type="Node2D" unique_id=151751797 node_paths=PackedStringArray("email_field", "pass_field", "login_button", "info", "register_button", "passwordVBox", "usernameVBox", "createUsernameButton", "createUsernameField", "consentCheckBox")]

@@ -27,9 +27,6 @@ var question_time_taken: float = 0.0
 var quiz_over: bool = false
 
 func _ready() -> void:
-	ThemeManager.detect_system_theme()
-	ThemeManager.apply_theme($CanvasLayer/Control)
-
 	quit_button.text = "Quit"
 	quit_button.pressed.connect(_quit_to_menu)
 	next_button.pressed.connect(_gen_question)
@@ -76,7 +73,7 @@ func _update_question_tracker() -> void:
 	question_tracker_label.text = "Question %d / %d" % [total_questions_answered, max_questions]
 
 func _quit_to_menu() -> void:
-	get_tree().change_scene_to_file("res://stats.tscn")
+	get_tree().change_scene_to_file("res://scenes/stats.tscn")
 
 func _gen_question() -> void:
 	if quiz_over:
@@ -147,7 +144,7 @@ func _finish_quiz() -> void:
 	next_button.disabled = true
 	result_label.text += "\n\nCustom quiz finished."
 	await get_tree().create_timer(1.2).timeout
-	get_tree().change_scene_to_file("res://stats.tscn")
+	get_tree().change_scene_to_file("res://scenes/stats.tscn")
 
 func insert_answer(chosen: String, correct_answer: String, choices: Array[String], time_taken: float) -> void:
 	var query = (

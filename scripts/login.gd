@@ -74,7 +74,7 @@ func _auth_error(e: SupabaseAuthError):
 	info.text = e.message
 
 func load_menu() -> void:
-	get_tree().change_scene_to_file("res://mainMenu.tscn")
+	get_tree().change_scene_to_file("res://scenes/mainMenu.tscn")
 
 func sign_in():
 	var task: AuthTask = Supabase.auth.sign_in(email_field.text, pass_field.text)

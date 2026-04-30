@@ -90,7 +90,7 @@ func _start_custom_quiz() -> void:
 	CustomQuizSettings.question_count = question_val
 
 	CustomQuizSettings.use_settings = true
-	get_tree().change_scene_to_file("res://quiz.tscn")
+	get_tree().change_scene_to_file("res://scenes/quiz.tscn")
 
 func _go_back() -> void:
-	get_tree().change_scene_to_file("res://mainMenu.tscn")
+	get_tree().change_scene_to_file("res://scenes/mainMenu.tscn")

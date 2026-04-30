@@ -110,12 +110,12 @@ func _process(delta: float) -> void:
 
 func _change_scene() -> void:
 	if questions_answered == 0:
-		get_tree().change_scene_to_file("res://mainMenu.tscn")
+		get_tree().change_scene_to_file("res://scenes/mainMenu.tscn")
 		return
 
 	Global.question_history = question_history
 	CustomQuizSettings.use_settings = false
-	get_tree().change_scene_to_file("res://stats.tscn")
+	get_tree().change_scene_to_file("res://scenes/stats.tscn")
 	return
 
 
@@ -133,7 +133,7 @@ func choice_made(chosen_button: Button) -> void:
 		button.disabled = true
 
 	if q.was_correct:
-		result_label.text += "Correct!\nThe answer is %s" % q.correct_answer
+		result_label.text += "Correct!\nThe answer was %s" % q.correct_answer
 	else:
 		result_label.text += "Incorrect.\nThe correct answer was %s" % q.correct_answer
 

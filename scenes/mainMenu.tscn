@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bkpcfp4p5q6tu"]
 
-[ext_resource type="Script" uid="uid://o8cbo2lwdqs3" path="res://main_menu.gd" id="1_wut1r"]
-[ext_resource type="PackedScene" uid="uid://dw6h2bsgwd23j" path="res://rx4success.tscn" id="2_83s16"]
+[ext_resource type="Script" uid="uid://o8cbo2lwdqs3" path="res://scripts/main_menu.gd" id="1_wut1r"]
+[ext_resource type="PackedScene" uid="uid://dw6h2bsgwd23j" path="res://scenes/rx4success.tscn" id="2_83s16"]
 [ext_resource type="Theme" uid="uid://b30enffk2rsdm" path="res://themes/generated/light_theme.tres" id="2_w7d22"]
-[ext_resource type="Script" uid="uid://k2wnifohnd7x" path="res://toggle_theme.gd" id="4_wc2lj"]
+[ext_resource type="Script" uid="uid://k2wnifohnd7x" path="res://scripts/toggle_theme.gd" id="4_wc2lj"]
 
 [node name="MainMenu" type="Node2D" unique_id=151751797 node_paths=PackedStringArray("quiz_button", "custom_quiz_button", "stats_button", "leaderboard_btn", "logout_button", "username_label")]
 script = ExtResource("1_wut1r")

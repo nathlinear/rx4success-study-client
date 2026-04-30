@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bpkeegaaphhuk"]
 
-[ext_resource type="Script" uid="uid://cvedmvsedky76" path="res://custom_quiz_setup.gd" id="1_hrjqg"]
+[ext_resource type="Script" uid="uid://cvedmvsedky76" path="res://scripts/custom_quiz_setup.gd" id="1_hrjqg"]
 
 [node name="CustomQuizSetup" type="Node2D" unique_id=1240381807 node_paths=PackedStringArray("time_input", "questions_input", "start_button", "back_button", "level_picker")]
 script = ExtResource("1_hrjqg")

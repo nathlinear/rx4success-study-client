@@ -37,16 +37,16 @@ func _ready() -> void:
 	show_username()
 
 func _go_to_quiz() -> void:
-	get_tree().change_scene_to_file("res://quiz.tscn")
+	get_tree().change_scene_to_file("res://scenes/quiz.tscn")
 
 func _go_to_custom_quiz_setup() -> void:
-	get_tree().change_scene_to_file("res://custom_quiz_setup.tscn")
+	get_tree().change_scene_to_file("res://scenes/custom_quiz_setup.tscn")
 
 func _go_to_stats() -> void:
-	get_tree().change_scene_to_file("res://stats.tscn")
+	get_tree().change_scene_to_file("res://scenes/stats.tscn")
 
 func _go_to_leaderboard() -> void:
-	get_tree().change_scene_to_file("res://leaderboards.tscn")
+	get_tree().change_scene_to_file("res://scenes/leaderboards.tscn")
 
 func _logout() -> void:
 	logout_button.disabled = true
@@ -62,7 +62,7 @@ func _logout() -> void:
 	if OS.has_feature("web"):
 		JavaScriptBridge.eval("window.location.reload();")
 	else:
-		get_tree().change_scene_to_file("res://login.tscn")
+		get_tree().change_scene_to_file("res://scenes/login.tscn")
 
 func _response(msg) -> void:
 	print(msg)

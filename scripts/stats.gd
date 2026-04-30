@@ -38,7 +38,7 @@ func _input(event: InputEvent) -> void:
 func _exit() -> void:
 	Global.question_history = []
 	Global.use_question_history = false
-	get_tree().change_scene_to_file("res://mainMenu.tscn")
+	get_tree().change_scene_to_file("res://scenes/mainMenu.tscn")
 
 func get_supabase_questions() -> Array[QuestionData]:
 	var q = SupabaseQuery.new().select(["*"]).from("quiz_answers").order("created_at", 1)

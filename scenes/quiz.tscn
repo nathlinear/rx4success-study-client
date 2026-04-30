@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dmwekxfamq5yr"]
 
-[ext_resource type="Script" uid="uid://khi6moika1h2" path="res://quiz.gd" id="1_kninm"]
+[ext_resource type="Script" uid="uid://khi6moika1h2" path="res://scripts/quiz.gd" id="1_36y45"]
 
 [node name="Quiz" type="Node2D" unique_id=1623613907 node_paths=PackedStringArray("quit_button", "next_button", "question_label", "result_label", "button1", "button2", "button3", "button4", "question_tracker_label", "time_label", "level_label")]
-script = ExtResource("1_kninm")
+script = ExtResource("1_36y45")
 quit_button = NodePath("CanvasLayer/Control/TopBar/HBoxContainer/Quit")
 next_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer3/VBoxContainer2/NextButton")
 question_label = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer3/VBoxContainer/QuestionBox/QuestionLabel")

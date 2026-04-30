@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://f5a5tkldeo2v"]
 
-[ext_resource type="Script" uid="uid://c82skxrx7l2nc" path="res://leaderboards.gd" id="1_pf0yp"]
-[ext_resource type="Script" uid="uid://dfv2dgpxpmvva" path="res://quit_button.gd" id="2_qhm5l"]
-[ext_resource type="Script" uid="uid://cdsmk373oxxr1" path="res://scroll_container.gd" id="2_tibs2"]
+[ext_resource type="Script" uid="uid://c82skxrx7l2nc" path="res://scripts/leaderboards.gd" id="1_pf0yp"]
+[ext_resource type="Script" uid="uid://dfv2dgpxpmvva" path="res://scripts/quit_button.gd" id="2_qhm5l"]
+[ext_resource type="Script" uid="uid://cdsmk373oxxr1" path="res://scripts/scroll_container.gd" id="2_tibs2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_di7s0"]
 draw_center = false

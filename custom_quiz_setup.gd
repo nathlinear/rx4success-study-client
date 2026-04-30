@@ -9,8 +9,6 @@ extends Node2D
 var question_levels: Array[int] = [2,4,5,6,7,8,9,10,11,12,13]
 
 func _ready() -> void:
-	ThemeManager.detect_system_theme()
-	ThemeManager.apply_theme($CanvasLayer/Control)
 
 	if time_input == null or questions_input == null or start_button == null or back_button == null:
 		push_error("One or more exported nodes are not assigned in the Inspector.")

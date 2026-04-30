@@ -8,8 +8,8 @@ extends Node2D
 @export var username_label: Label
 
 func _ready() -> void:
-	ThemeManager.detect_system_theme()
-	ThemeManager.apply_theme($CanvasLayer/Control)
+	
+
 	
 	print("MAIN MENU READY: client = ", Supabase.auth.client)
 

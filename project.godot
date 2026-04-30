@@ -24,9 +24,9 @@ config/icon="res://icon.svg"
 
 Supabase="*uid://dxa1kn7re5iqf"
 Global="*uid://dswivbddy3kwv"
-ThemeManager="*uid://bmliwv1lweqst"
+ThemeManager="uid://bmliwv1lweqst"
 CustomQuizSettings="*uid://bwfrj8wx6qjv7"
-Overlay="*uid://bbttp37jv6vhk"
+Overlay="uid://bbttp37jv6vhk"
 
 [display]
 
@@ -38,11 +38,11 @@ window/handheld/orientation=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/supabase/plugin.cfg")
+enabled=PackedStringArray("res://addons/supabase/plugin.cfg", "res://addons/theme_gen_save_sync/plugin.cfg")
 
 [gui]
 
-theme/custom="uid://dpqcqdtc7258q"
+theme/custom="uid://b30enffk2rsdm"
 
 [rendering]
 

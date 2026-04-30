@@ -24,14 +24,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="ColorRect" parent="CanvasLayer/Control" unique_id=105379172]
+[node name="Panel" type="Panel" parent="CanvasLayer/Control" unique_id=977464325]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.41725764, 0.41725734, 0.41725737, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control" unique_id=1570709786]
 layout_mode = 1
@@ -144,11 +143,11 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -313.0
-offset_bottom = 200.0
+offset_left = -265.0
+offset_bottom = 99.0
 grow_horizontal = 0
 
 [node name="QuitButton" type="Button" parent="CanvasLayer/Control/MarginContainer2" unique_id=1563095832]
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 0
 text = "Quit to Menu"

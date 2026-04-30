@@ -30,8 +30,6 @@ var time_left: float = -1.0
 var question_history: Array[QuestionData] = []
 
 func _ready() -> void:
-	ThemeManager.detect_system_theme()
-	ThemeManager.apply_theme($CanvasLayer/Control)
 	
 	quit_button.pressed.connect(_change_scene)
 	next_button.pressed.connect(_gen_question)
@@ -135,13 +133,9 @@ func choice_made(chosen_button: Button) -> void:
 		button.disabled = true
 
 	if q.was_correct:
-		result_label.text = "Correct\n"
-		Overlay.show_popup("Correct!\n+10 Points")
+		result_label.text += "Correct!\nThe answer is %s" % q.correct_answer
 	else:
-		result_label.text = "Incorrect\n"
-		Overlay.show_popup("Incorrect\n-5 Points")
-
-	result_label.text += "The correct answer was %s" % q.correct_answer
+		result_label.text += "Incorrect.\nThe correct answer was %s" % q.correct_answer
 
 	questions_answered += 1
 	_update_question_tracker()

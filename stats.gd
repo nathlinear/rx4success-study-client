@@ -12,8 +12,6 @@ class_name Statistics
 @export var quit_button: Button
 
 func _ready() -> void:
-	ThemeManager.detect_system_theme()
-	ThemeManager.apply_theme($CanvasLayer/Control)
 	
 	if Supabase.auth.client == null:
 		return

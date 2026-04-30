@@ -5,8 +5,6 @@ extends Node2D
 @export var timeOptions: OptionButton
 
 func _ready() -> void:
-	ThemeManager.detect_system_theme()
-	ThemeManager.apply_theme($CanvasLayer/Control)
 	
 	statOptions.item_selected.connect(_on_stat_options_item_selected)
 	timeOptions.item_selected.connect(_on_time_options_item_selected)
@@ -22,10 +20,6 @@ func create_listing(username: String, score: float):
 	rightLabel.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	rightLabel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	rightLabel.text = String.num(score, 2).pad_decimals(2) + "   "
-
-	if !ThemeManager.is_dark_mode:
-		leftLabel.add_theme_color_override("font_color", ThemeManager.text_light)
-		rightLabel.add_theme_color_override("font_color", ThemeManager.text_light)
 
 	leftLabel.custom_minimum_size = Vector2(0, 30)
 	rightLabel.custom_minimum_size = Vector2(0, 30)

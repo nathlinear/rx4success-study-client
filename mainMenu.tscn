@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://o8cbo2lwdqs3" path="res://main_menu.gd" id="1_wut1r"]
 [ext_resource type="PackedScene" uid="uid://dw6h2bsgwd23j" path="res://rx4success.tscn" id="2_83s16"]
+[ext_resource type="Theme" uid="uid://b30enffk2rsdm" path="res://themes/generated/light_theme.tres" id="2_w7d22"]
+[ext_resource type="Script" uid="uid://k2wnifohnd7x" path="res://toggle_theme.gd" id="4_wc2lj"]
 
 [node name="MainMenu" type="Node2D" unique_id=151751797 node_paths=PackedStringArray("quiz_button", "custom_quiz_button", "stats_button", "leaderboard_btn", "logout_button", "username_label")]
 script = ExtResource("1_wut1r")
@@ -23,15 +25,18 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("2_w7d22")
 
-[node name="Background" type="ColorRect" parent="CanvasLayer/Control" unique_id=2142694631]
+[node name="Panel" type="Panel" parent="CanvasLayer/Control" unique_id=1867227247]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.48178947, 0.48178947, 0.48178947, 1)
+
+[node name="Rx4Success" parent="CanvasLayer/Control" unique_id=353884905 instance=ExtResource("2_83s16")]
+layout_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control" unique_id=134423613]
 layout_mode = 1
@@ -82,5 +87,19 @@ text = "Log out"
 layout_mode = 2
 text = "Logged in as: {username}"
 
-[node name="Rx4Success" parent="CanvasLayer/Control" unique_id=353884905 instance=ExtResource("2_83s16")]
+[node name="BottomRight" type="MarginContainer" parent="CanvasLayer/Control" unique_id=444084678]
 layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="ToggleTheme" type="Button" parent="CanvasLayer/Control/BottomRight" unique_id=545115061]
+layout_mode = 2
+text = "Toggle Theme"
+script = ExtResource("4_wc2lj")

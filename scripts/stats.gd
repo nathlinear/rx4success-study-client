@@ -57,13 +57,11 @@ func get_supabase_questions() -> Array[QuestionData]:
 			dictionary["chosen_answer"],
 			dictionary["time_taken"]
 		))
-
-	
-	print(questions)
+		
 	return questions
 
-static func calc_score(accuracy_percent: float, average_time: float, total_q: int) -> float:
-	return accuracy_percent 
+static func calc_score(accuracy_percent: float, total_time: float, total_q: int) -> float:
+	return (accuracy_percent * total_q) / total_time
 
 func calc_stats(questions: Array[QuestionData]) -> void:
 
@@ -73,20 +71,6 @@ func calc_stats(questions: Array[QuestionData]) -> void:
 	var score: float = 0.0
 	label_history.text = ""
 	for q: QuestionData in questions:
-		if q.was_correct:
-			correct_q += 1
-			# 10 points per correct answer, with a penalty of 0.5 points per
-			# second taken (18 sec to 1 points). Rewards early correct answers
-			# score += max(10.0 - (q.time_taken * 0.5), 1.0)
-			# print(max(10.0 - (q.time_taken * 0.5), 1.0))
-			score += 10
-		else:
-			# 10 point penalty for incorrect answers, with a smaller penalty of
-			# 0.1 points per second taken (50 sec to 5 points). Punishes early
-			# incorrect answers more harshly
-			# score -= max(10.0 - (q.time_taken * 0.1), 5.0)
-			# print(-max(10.0 - (q.time_taken * 0.1), 5.0))
-			score -= 5
 		total_t += q.time_taken
 
 		var string: String = "Q: " + q.question_prompt + "\n" + "Your answer: " + q.chosen_answer + "\n" + "Correct answer: " + q.correct_answer + "\n" + "Time taken: " + String.num(q.time_taken, 2) + "s\n" + "\n\n"
@@ -99,12 +83,9 @@ func calc_stats(questions: Array[QuestionData]) -> void:
 		acc_q = 100.0 * float(correct_q) / total_q
 		avg_t = total_t / total_q
 	
-	print(acc_q)
-	print(avg_t)
 	
-	# var score = calc_score(acc_q, avg_t, total_q)
+	score = calc_score(acc_q, total_t, total_q)
 	
-	print(score)
 	
 	label_total_q.text = String.num(total_q, 0)
 	label_correct_q.text = String.num(correct_q, 0)
@@ -122,6 +103,6 @@ func calc_stats(questions: Array[QuestionData]) -> void:
 
 	# If the user got to stats not from main menu, show "Quiz XP" instead of "Overall XP"
 	if CustomQuizSettings.use_settings or Global.question_history != []:
-		xp_text_label.text = "Quiz Points"
+		xp_text_label.text = "Quiz Score"
 	else:
-		xp_text_label.text = "Total Points"
+		xp_text_label.text = "Total Score"

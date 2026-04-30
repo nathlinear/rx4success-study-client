@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c5b48gjd2igpd"]
 
 [ext_resource type="Script" uid="uid://dfv2dgpxpmvva" path="res://scripts/quit_button.gd" id="1_7sidg"]
-[ext_resource type="Script" uid="uid://b8vugcfb6bpp5" path="res://scenes/account.gd" id="1_o8dwq"]
+[ext_resource type="Script" uid="uid://b8vugcfb6bpp5" path="res://scripts/account.gd" id="1_o8dwq"]
 [ext_resource type="Script" uid="uid://c0qg7a8584vft" path="res://scenes/level_options.gd" id="2_ca2pp"]
 
 [node name="Account" type="Node2D" unique_id=400544345 node_paths=PackedStringArray("change_username_button", "reset_level_button", "reset_all_button", "confirm_button", "cancel_button", "question_level_option", "new_username", "username_label", "popup_container", "vbox_username", "vbox_reset_level", "vbox_reset_all")]

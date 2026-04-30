@@ -4,12 +4,12 @@ extends Node2D
 @export var custom_quiz_button: Button
 @export var stats_button: Button
 @export var leaderboard_btn: Button
+@export var account_btn: Button
 @export var logout_button: Button
 @export var username_label: Label
 
 func _ready() -> void:
 	
-
 	
 	print("MAIN MENU READY: client = ", Supabase.auth.client)
 
@@ -24,6 +24,9 @@ func _ready() -> void:
 
 	if not leaderboard_btn.pressed.is_connected(_go_to_leaderboard):
 		leaderboard_btn.pressed.connect(_go_to_leaderboard)
+	
+	if not account_btn.pressed.is_connected(_go_to_account):
+		account_btn.pressed.connect(_go_to_account)
 
 	if not logout_button.pressed.is_connected(_logout):
 		logout_button.pressed.connect(_logout)
@@ -47,6 +50,9 @@ func _go_to_stats() -> void:
 
 func _go_to_leaderboard() -> void:
 	get_tree().change_scene_to_file("res://scenes/leaderboards.tscn")
+
+func _go_to_account() -> void:
+	get_tree().change_scene_to_file("res://scenes/account.tscn")
 
 func _logout() -> void:
 	logout_button.disabled = true

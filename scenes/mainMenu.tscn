@@ -5,12 +5,13 @@
 [ext_resource type="Theme" uid="uid://b30enffk2rsdm" path="res://themes/generated/light_theme.tres" id="2_w7d22"]
 [ext_resource type="Script" uid="uid://k2wnifohnd7x" path="res://scripts/toggle_theme.gd" id="4_wc2lj"]
 
-[node name="MainMenu" type="Node2D" unique_id=151751797 node_paths=PackedStringArray("quiz_button", "custom_quiz_button", "stats_button", "leaderboard_btn", "logout_button", "username_label")]
+[node name="MainMenu" type="Node2D" unique_id=151751797 node_paths=PackedStringArray("quiz_button", "custom_quiz_button", "stats_button", "leaderboard_btn", "account_btn", "logout_button", "username_label")]
 script = ExtResource("1_wut1r")
 quiz_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/QuizButton")
 custom_quiz_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/CustomButton")
 stats_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/StatsButton")
 leaderboard_btn = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/LeaderboardButton")
+account_btn = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/AccountButton")
 logout_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/LogOutButton")
 username_label = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/UsernameLabel")
 
@@ -55,6 +56,7 @@ theme_override_constants/separation = 20
 
 [node name="Button" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=2003087736]
 visible = false
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "Flashcards"
 
@@ -76,7 +78,12 @@ text = "Leaderboards"
 [node name="StatsButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=884080852]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "Profile"
+text = "Stats"
+
+[node name="AccountButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1557696210]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Account"
 
 [node name="LogOutButton" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=1772817271]
 custom_minimum_size = Vector2(0, 100)

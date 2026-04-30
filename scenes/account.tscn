@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://c5b48gjd2igpd"]
+
+[ext_resource type="Script" uid="uid://dfv2dgpxpmvva" path="res://scripts/quit_button.gd" id="1_7sidg"]
+[ext_resource type="Script" uid="uid://b8vugcfb6bpp5" path="res://scenes/account.gd" id="1_o8dwq"]
+[ext_resource type="Script" uid="uid://c0qg7a8584vft" path="res://scenes/level_options.gd" id="2_ca2pp"]
+
+[node name="Account" type="Node2D" unique_id=400544345 node_paths=PackedStringArray("change_username_button", "reset_level_button", "reset_all_button", "confirm_button", "cancel_button", "question_level_option", "new_username", "username_label", "popup_container", "vbox_username", "vbox_reset_level", "vbox_reset_all")]
+script = ExtResource("1_o8dwq")
+change_username_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/Button")
+reset_level_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/Button2")
+reset_all_button = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/Button3")
+confirm_button = NodePath("CanvasLayer/Control/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer/ConfirmButton")
+cancel_button = NodePath("CanvasLayer/Control/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer/CancelButton")
+question_level_option = NodePath("CanvasLayer/Control/PanelContainer/CenterContainer/VBoxContainer/VBoxResetLevel/OptionButton")
+new_username = NodePath("CanvasLayer/Control/PanelContainer/CenterContainer/VBoxContainer/VBoxUsername/LineEdit")
+username_label = NodePath("CanvasLayer/Control/MarginContainer/VBoxContainer/Label")
+popup_container = NodePath("CanvasLayer/Control/PanelContainer")
+vbox_username = NodePath("CanvasLayer/Control/PanelContainer/CenterContainer/VBoxContainer/VBoxUsername")
+vbox_reset_level = NodePath("CanvasLayer/Control/PanelContainer/CenterContainer/VBoxContainer/VBoxResetLevel")
+vbox_reset_all = NodePath("CanvasLayer/Control/PanelContainer/CenterContainer/VBoxContainer/VBoxResetAll")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1016506819]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1591018853]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control" unique_id=338303690]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control" unique_id=1124203768]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer" unique_id=1031911215]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=582474499]
+layout_mode = 2
+text = "Your current username:
+"
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=489746518]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Change Username"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=53009680]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Reset Statistics for Question Level"
+
+[node name="Button3" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer" unique_id=914638721]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Reset ALL Statistics"
+
+[node name="TopRight" type="MarginContainer" parent="CanvasLayer/Control" unique_id=110841536]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Quit" type="Button" parent="CanvasLayer/Control/TopRight" unique_id=1981293153]
+layout_mode = 2
+text = "Back"
+script = ExtResource("1_7sidg")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control" unique_id=101439952]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/PanelContainer" unique_id=1049758514]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/PanelContainer/CenterContainer" unique_id=1249996637]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="VBoxUsername" type="VBoxContainer" parent="CanvasLayer/Control/PanelContainer/CenterContainer/VBoxContainer" unique_id=1615040363]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/PanelContainer/CenterContainer/VBoxContainer/VBoxUsername" unique_id=351991591]
+layout_mode = 2
+text = "Enter your new username:"
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Control/PanelContainer/CenterContainer/VBoxContainer/VBoxUsername" unique_id=1382700035]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+placeholder_text = "New username"
+alignment = 1
+
+[node name="VBoxResetLevel" type="VBoxContainer" parent="CanvasLayer/Control/PanelContainer/CenterContainer/VBoxContainer" unique_id=16831925]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/PanelContainer/CenterContainer/VBoxContainer/VBoxResetLevel" unique_id=1510556688]
+layout_mode = 2
+text = "Enter level number to be reset:"
+
+[node name="OptionButton" type="OptionButton" parent="CanvasLayer/Control/PanelContainer/CenterContainer/VBoxContainer/VBoxResetLevel" unique_id=2051478029]
+layout_mode = 2
+script = ExtResource("2_ca2pp")
+
+[node name="VBoxResetAll" type="VBoxContainer" parent="CanvasLayer/Control/PanelContainer/CenterContainer/VBoxContainer" unique_id=495180019]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/PanelContainer/CenterContainer/VBoxContainer/VBoxResetAll" unique_id=1806829484]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+text = "Are you absolutely sure you want to reset ALL of your stats?"
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/PanelContainer/CenterContainer/VBoxContainer" unique_id=1017154877]
+layout_mode = 2
+
+[node name="CancelButton" type="Button" parent="CanvasLayer/Control/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=265593310]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cancel"
+
+[node name="ConfirmButton" type="Button" parent="CanvasLayer/Control/PanelContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=345206021]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Confirm"

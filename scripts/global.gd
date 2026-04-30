@@ -33,12 +33,12 @@ func _apply_theme() -> void:
 		DARK:
 			control.theme = load("res://themes/generated/dark_theme.tres")
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.is_pressed():
-		match event.as_text():
-			"1":
-				theme_setting = LIGHT
-				_apply_theme()
-			"2":
-				theme_setting = DARK
-				_apply_theme()
+#func _input(event: InputEvent) -> void:
+	#if event is InputEventKey and event.is_pressed():
+		#match event.as_text():
+			#"1":
+				#theme_setting = LIGHT
+				#_apply_theme()
+			#"2":
+				#theme_setting = DARK
+				#_apply_theme()

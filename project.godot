@@ -42,7 +42,7 @@ enabled=PackedStringArray("res://addons/supabase/plugin.cfg", "res://addons/them
 
 [gui]
 
-theme/custom="uid://b30enffk2rsdm"
+theme/custom="uid://b3fxhkuumr3d3"
 
 [rendering]
 
